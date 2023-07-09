@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/baseline_work_24"
+        android:title="Jobs" />
+    <item
+        android:id="@+id/connectionsFragment"
+        android:icon="@drawable/ic_nav_network"
+        android:title="My Network" />
+    <item
+        android:id="@+id/newPostFragment"
+        android:icon="@drawable/ic_plus"
+        android:title="post" />
+    <item
+        android:id="@+id/userDashboardFragment"
+        android:icon="@drawable/baseline_person_24"
+        android:title="Me" />
+
+</menu>

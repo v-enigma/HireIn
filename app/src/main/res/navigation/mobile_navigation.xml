@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.hirein.UI.HomeFragment"
+        android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/connectionsFragment"
+        android:name="com.example.hirein.UI.ConnectionsFragment"
+        android:label="ConnectionsFragment" />
+    <fragment
+        android:id="@+id/newPostFragment"
+        android:name="com.example.hirein.UI.NewPostFragment"
+        android:label="NewPostFragment" />
+    <fragment
+        android:id="@+id/userDashboardFragment"
+        android:name="com.example.hirein.UI.UserDashboardFragment"
+        android:label="UserDashboardFragment" />
+</navigation>
