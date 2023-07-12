@@ -1,3 +1,33 @@
 <resources>
     <string name="app_name">HireIn</string>
+    <string name="recruiter_role">Recruiter Role</string>
+    <string name="location">Location</string>
+    <string name="experience">Experience</string>
+    <string name="education">Education</string>
+    <string name="salary">salary</string>
+    <string name="jobDescription">
+        Another feature in the developer options helps you identify overdraw by color-coding your UI.
+        Overdraw occurs when your app draws the same pixel more than once within the same frame.
+        So this visualization shows where your app might be doing more rendering work than necessary,
+        which can be a performance problem due to extra GPU effort to render pixels that won’t be visible to the user.
+        GPU overdraw problem can occur because of the nesting of layout, so we need to solve that problem by reducing the nesting level.
+        Following are the steps to enable GPU overdraw in your device.
+    On your device, go to Settings and tap Developer Options.
+         Another feature in the developer options helps you identify overdraw by color-coding your UI.
+        Overdraw occurs when your app draws the same pixel more than once within the same frame.
+        So this visualization shows where your app might be doing more rendering work than necessary,
+        which can be a performance problem due to extra GPU effort to render pixels that won’t be visible to the user.
+        GPU overdraw problem can occur because of the nesting of layout, so we need to solve that problem by reducing the nesting level.
+        Following are the steps to enable GPU overdraw in your device.
+    On your device, go to Settings and tap Developer Options.
+         Another feature in the developer options helps you identify overdraw by color-coding your UI.
+        Overdraw occurs when your app draws the same pixel more than once within the same frame.
+        So this visualization shows where your app might be doing more rendering work than necessary,
+        which can be a performance problem due to extra GPU effort to render pixels that won’t be visible to the user.
+        GPU overdraw problem can occur because of the nesting of layout, so we need to solve that problem by reducing the nesting level.
+        Following are the steps to enable GPU overdraw in your device.
+    On your device, go to Settings and tap Developer Options
+    </string>
+    <string name="job_title">Job Title</string>
+    <string name="jobpostowner_image">JobPostOwner Image</string>
 </resources>

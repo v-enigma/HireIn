@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
     app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.hirein.UI.HomeFragment"
-        android:label="HomeFragment" />
+        android:name="com.example.hirein.UI.JobsFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_jobs">
+        <action
+            android:id="@+id/action_homeFragment_to_postDetailFragment"
+            app:destination="@id/postDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/connectionsFragment"
         android:name="com.example.hirein.UI.ConnectionsFragment"
-        android:label="ConnectionsFragment" />
+        android:label="ConnectionsFragment"
+        tools:layout="@layout/fragment_connections"/>
     <fragment
         android:id="@+id/newPostFragment"
         android:name="com.example.hirein.UI.NewPostFragment"
@@ -20,4 +27,8 @@
         android:id="@+id/userDashboardFragment"
         android:name="com.example.hirein.UI.UserDashboardFragment"
         android:label="UserDashboardFragment" />
+    <fragment
+        android:id="@+id/postDetailFragment"
+        android:name="com.example.hirein.UI.PostDetailFragment"
+        android:label="PostDetailFragment" />
 </navigation>

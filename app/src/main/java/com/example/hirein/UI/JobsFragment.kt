@@ -5,32 +5,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.hirein.data.entity.ConnectionsAdapter
-import com.example.hirein.databinding.FragmentConnectionsBinding
+import com.example.hirein.Factories.AdapterFactory
+import com.example.hirein.data.entity.JobPostAdapter
+import com.example.hirein.databinding.FragmentJobsBinding
 
-class ConnectionsFragment:Fragment() {
-    private  var _binding: FragmentConnectionsBinding? = null
+class JobsFragment: Fragment() {
+    private  var _binding: FragmentJobsBinding?= null
     private val binding get() =_binding!!
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-         _binding = FragmentConnectionsBinding.inflate(inflater,container,false)
-         val adapter = ConnectionsAdapter()
-        binding.connections.adapter = adapter
+        _binding = FragmentJobsBinding.inflate(layoutInflater,container,false)
         val view = binding.root
-        println("I am recreated connection")
+        println("I am recreated home")
+        val adapter =  JobPostAdapter()
+        binding.jobPosts.adapter = adapter
         return view
     }
-
     override fun onDestroy() {
-        super.onDestroy()
         _binding = null
+        super.onDestroy()
     }
 
     override fun onResume() {
         super.onResume()
-        println("connections Fragment on focus")
+        println("Jobs Fragment on focus")
     }
+
 }

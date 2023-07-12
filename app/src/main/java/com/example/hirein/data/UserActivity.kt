@@ -1,4 +1,4 @@
-package com.example.hirein.data.Model
+package com.example.hirein.data
 
 data class UserActivity(
     val userId:String,

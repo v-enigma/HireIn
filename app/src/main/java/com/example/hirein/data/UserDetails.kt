@@ -1,4 +1,4 @@
-package com.example.hirein.data.Model
+package com.example.hirein.data
 
 import java.net.URL
 import java.time.LocalDate

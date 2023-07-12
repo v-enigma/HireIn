@@ -1,19 +1,25 @@
-package com.example.hirein.data.Model
+package com.example.hirein.data.entity
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hirein.R
 import de.hdodenhof.circleimageview.CircleImageView
+import java.time.LocalDate
 
 class ConnectionsAdapter: RecyclerView.Adapter<ConnectionsAdapter.ConnectionViewHolder>() {
-    var connections :List<User> = listOf()
+   // val date = LocalDate(1998,2,1)
+   @RequiresApi(Build.VERSION_CODES.O)
+   var connections :List<User> = listOf(
+        User(1, firstName = "A", lastName = "B", mobileNo = "123", emailId = "venu@1234", LocalDate.now(), " ", " " )
+               , User(1, firstName = "A", lastName = "B", mobileNo = "123", emailId = "venu@1234", LocalDate.now(), " ", " " )   ,
+       User(1, firstName = "A", lastName = "B", mobileNo = "123", emailId = "venu@1234", LocalDate.now(), " ", " " )
+   )
     class ConnectionViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         var profileImage : CircleImageView = itemView.findViewById(R.id.profilePhoto)
         var userName :TextView = itemView.findViewById(R.id.personName)
@@ -25,8 +31,10 @@ class ConnectionsAdapter: RecyclerView.Adapter<ConnectionsAdapter.ConnectionView
                  return ConnectionViewHolder(view)
              }
          }
-        fun bind(item: UserDetails){
-
+        fun bind(item: User){
+          //this.roleDetails.text =  dao issues
+          this.userName.text = "${item.firstName} ${item.lastName}"
+          //this.profileImage =  // have to request storage permission and look how to create a photo from the storage path
 
         }
     }
@@ -39,12 +47,13 @@ class ConnectionsAdapter: RecyclerView.Adapter<ConnectionsAdapter.ConnectionView
 
     override fun onBindViewHolder(holder: ConnectionViewHolder, position: Int) {
         val item = connections[position]
-        if(!item.userDetails.profilePhoto.isEmpty()){
-            val bitmap = BitmapFactory.decodeFile(item.userDetails.profilePhoto)
+        holder.bind(item)
+/*        if(!item.profilePhoto.isEmpty()){
+            val bitmap = BitmapFactory.decodeFile(item.profilePhoto)
             holder.profileImage.setImageBitmap(bitmap)
         }
-        holder.userName.text = "${item.userDetails.firstName} ${item.userDetails.lastName}"
-        if(item.experiences.isNotEmpty()){
+        holder.userName.text = "${item.firstName} ${item.lastName}"
+        *//*if(item.experiences.isNotEmpty()){
             var roleDetails = "${item.experiences.get(0).title} at ${item.experiences[0].company.name}| "
             if(item.experiences[0].skills.isNotEmpty()){
                 item.experiences[0].skills.forEach{
@@ -55,7 +64,7 @@ class ConnectionsAdapter: RecyclerView.Adapter<ConnectionsAdapter.ConnectionView
             }
           holder.roleDetails.text = roleDetails
         }
-
+*/
 
     }
 

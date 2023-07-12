@@ -1,6 +1,6 @@
-package com.example.hirein.data.Model
+package com.example.hirein.data.entity
 
-enum class EmployementType {
+enum class EmploymentType {
     CONTRACT,
     INTERNSHIP,
     FULL_TIME,
