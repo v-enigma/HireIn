@@ -1,4 +1,4 @@
-package com.example.hirein.UI
+package com.example.hirein.data
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.hirein.data.ConnectionInfromation

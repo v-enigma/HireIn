@@ -42,8 +42,6 @@ class MainActivity : AppCompatActivity() {
 
         }*/
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
-
-        //setUpButton()
         val navHost = supportFragmentManager.findFragmentById(R.id.my_nav_host_fragment) as NavHostFragment
         setBottomNavigationWithHideBehaviour(navHost)
         val bundle = Bundle()

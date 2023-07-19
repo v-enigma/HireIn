@@ -7,65 +7,60 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.LiveData
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hirein.R
 import com.example.hirein.data.ConnectionInfromation
-import com.example.hirein.data.UserDetails
+import com.example.hirein.data.ConnectionsDiffItemCallback
+import com.example.hirein.databinding.ConnectionBinding
 import de.hdodenhof.circleimageview.CircleImageView
 
-class ConnectionsAdapter(val onItemClicked: (Int)-> Unit, connections: LiveData<List<ConnectionInfromation>>): RecyclerView.Adapter<ConnectionsAdapter.ConnectionViewHolder>() {
+class ConnectionsAdapter(val onItemClicked: (Int)-> Unit): ListAdapter<ConnectionInfromation, ConnectionsAdapter.ConnectionViewHolder>(
+    ConnectionsDiffItemCallback()
+){
    // val date = LocalDate(1998,2,1)
 
-   private var connections  = connections.value
+  // private var connections  = connections.value
 
-    class ConnectionViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
-        var profileImage : CircleImageView = itemView.findViewById(R.id.profilePhoto)
-        var userName :TextView = itemView.findViewById(R.id.personName)
-        var roleDetails :TextView = itemView.findViewById(R.id.roleDetails)
-        val options : ImageView = itemView.findViewById(R.id.options)
+    class ConnectionViewHolder(val binding: ConnectionBinding):RecyclerView.ViewHolder(binding.root){
+        val options : ImageView = binding.options
          companion object {
              fun inflateFrom(parent: ViewGroup):ConnectionViewHolder{
                  val layoutInflater = LayoutInflater.from(parent.context)
-                 val view = layoutInflater.inflate(R.layout.connection,parent,false) as ConstraintLayout
-                 return ConnectionViewHolder(view)
+                 val binding = ConnectionBinding.inflate(layoutInflater,parent,false)
+                 //val view = layoutInflater.inflate(R.layout.connection,parent,false) as ConstraintLayout
+                 return ConnectionViewHolder(binding )
              }
          }
         fun bind(item: ConnectionInfromation){
-          //this.roleDetails.text =  dao issues
-            this.roleDetails.text = "${item.roleName}  @ ${item.companyName} "
-          this.userName.text = "${item.firstName} ${item.lastName} "
-          //this.profileImage =  // have to request storage permission and look how to create a photo from the storage path
-
+        binding.connection = item
         }
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ConnectionViewHolder {
+
         val viewHolder = ConnectionViewHolder.inflateFrom(parent)
         // println("I am inside viewHolder")
-        viewHolder.options.setOnClickListener(View.OnClickListener {
-
-           this.onItemClicked(viewHolder.adapterPosition)
-        })
-
+        viewHolder.options.setOnClickListener{
+            onItemClicked(viewHolder.adapterPosition)
+        }
        return viewHolder
     }
 
 
     @RequiresApi(Build.VERSION_CODES.O)
-    override fun getItemCount(): Int {
-        val count = connections?.size ?: 0
-        if(count ==0 )
-            println("Empty list")
-        return connections?.size ?: 0
-    }
+//    override fun getItemCount(): Int {
+//        val count = connections?.size ?: 0
+//        if(count ==0 )
+//            println("Empty list")
+//        return connections?.size ?: 0
+//    }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onBindViewHolder(holder: ConnectionViewHolder, position: Int) {
         //println("$position of the view")
-        val item = connections?.get(position)
-        item?.let { holder.bind(it) }
+        val item = getItem(position)
+        holder.bind(item)
 /*        if(!item.profilePhoto.isEmpty()){
             val bitmap = BitmapFactory.decodeFile(item.profilePhoto)
             holder.profileImage.setImageBitmap(bitmap)

@@ -27,7 +27,7 @@ class JobsFragment: Fragment() {
       // checking the received arguments
         println(arguments?.getLong("userId") )
         viewModel = ViewModelProvider(this).get(JobPostViewModel::class.java)
-        println("I am recreated home")
+        println("I am create Method call in Home Fragment")
         hideUpButton()
         binding.jobPosts.adapter = JobPostAdapter(this, viewModel.getData())
         binding.topAppBar.inflateMenu(R.menu.search_menu)
@@ -35,13 +35,14 @@ class JobsFragment: Fragment() {
     }
     override fun onDestroy() {
         _binding = null
+        println("Method call to Destroy in HOme Fragment")
         super.onDestroy()
     }
 
     override fun onResume() {
         super.onResume()
        requireActivity().title = "HireIn"
-        //println("Jobs Fragment on focus")
+        println("Jobs Fragment on focus")
     }
     private fun hideUpButton(){
         (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
