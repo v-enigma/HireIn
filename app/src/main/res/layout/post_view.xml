@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textAlignment="viewStart"
+    android:paddingStart="10dp"
+    android:background="#FFFFFF"
+    android:paddingBottom="5dp"
+    android:paddingTop="10dp"
+    android:paddingEnd="10dp"
+    android:layout_marginBottom="10dp">
+
+<!-- Role name and salary range -->
+<TextView
+    android:id="@+id/roleName"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/role_name"
+    android:textStyle="bold"
+    android:textColor="@color/black"
+    app:layout_constraintStart_toStartOf="parent"
+    android:padding="2dp"
+    app:layout_constraintTop_toTopOf="parent"/>
+
+<TextView
+    android:padding="2dp"
+    android:id="@+id/salaryRange"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/salary_range"
+    android:textColor="@color/black"
+    android:textSize="12sp"
+    android:textStyle="bold"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"/>
+
+<!-- Institute name, employee count, and job location -->
+<TextView
+    android:id="@+id/instituteName"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/institute_name"
+    android:padding="2dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/roleName"/>
+    <TextView
+        android:id="@+id/employeeCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:text="@string/employee_count"
+        android:layout_marginStart="3dp"
+        app:layout_constraintStart_toEndOf="@id/instituteName"
+        app:layout_constraintTop_toBottomOf="@id/roleName"/>
+
+
+    <TextView
+    android:id="@+id/workingModel"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/job_location"
+    android:paddingTop="2dp"
+    android:textSize="11sp"
+    android:textStyle="bold"
+    android:textColor="@color/black"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/salaryRange"/>
+
+<!-- Post owner details -->
+<de.hdodenhof.circleimageview.CircleImageView
+    android:id="@+id/postOwnerImage"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:scaleType="centerCrop"
+    android:src="@drawable/baseline_account_circle_24"
+    android:background="@drawable/circular_background"
+    android:contentDescription="Post Owner"
+    app:layout_constraintStart_toStartOf="parent"
+    android:padding="3dp"
+    android:layout_marginTop="3dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginRight="3dp"
+    app:layout_constraintTop_toBottomOf="@id/instituteName"/>
+
+    <TextView
+        android:id="@+id/postOwnerName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Post Owner Name just a fragment and component manager"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="2dp"
+        android:layout_marginTop="5dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintBottom_toBottomOf="@+id/postOwnerImage"
+        app:layout_constraintStart_toEndOf="@id/postOwnerImage"
+        app:layout_constraintTop_toTopOf="@id/postOwnerImage" />
+
+<!--    <View-->
+<!--    android:id="@+id/seperator"-->
+<!--    android:layout_width="2dp"-->
+<!--    android:layout_height="2dp"-->
+<!--    android:layout_marginStart="4dp"-->
+<!--    android:layout_marginBottom="4dp"    -->
+<!--    android:background="@color/lightGrey"-->
+<!--    app:layout_constraintStart_toEndOf="@id/postOwnerName"-->
+<!--    app:layout_constraintTop_toTopOf="@id/postOwnerImage"-->
+<!--    app:layout_constraintBottom_toBottomOf="@id/postOwnerImage"/>-->
+
+
+    <TextView
+        android:id="@+id/jobLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recruiter Location"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/instituteName" />
+
+    <View
+        android:id="@+id/seperator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/grey"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@id/jobRequirements"
+        app:layout_constraintTop_toBottomOf="@id/postOwnerImage"/>
+
+    <TextView
+        android:id="@+id/jobRequirements"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="2dp"
+        android:text="@string/jobRequirements"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/seperator" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

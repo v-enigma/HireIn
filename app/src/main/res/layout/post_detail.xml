@@ -3,308 +3,272 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-<data>
+    <data>
 
-</data>
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scrollbars="none"
-    android:background="#FFFFFF"
-    android:padding="5dp">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/parentContainer"
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent">
-       <androidx.constraintlayout.widget.ConstraintLayout
-           android:id="@+id/roleWithSalary"
-           app:layout_constraintTop_toTopOf="parent"
-           app:layout_constraintStart_toStartOf="parent"
-           android:padding="5dp"
-           android:layout_width="match_parent"
-           android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        >
 
-
-           <TextView
-            android:id="@+id/jobTitleTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/job_title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:textStyle="bold"/>
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="@string/salary"
-
-               app:layout_constraintBottom_toBottomOf="parent"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintTop_toTopOf="parent" />
-
-       </androidx.constraintlayout.widget.ConstraintLayout>
-
-      <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/Details"
-            app:layout_constraintTop_toBottomOf="@+id/roleWithSalary"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+            >
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:orientation="horizontal"
-                android:layout_marginStart="5dp"
-                android:id="@+id/location">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:contentDescription="@string/jobpostowner_image"
-                    android:src="@drawable/baseline_location_on_24" />
-
-                <TextView
-                    android:id="@+id/locationData"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/location"/>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/experience"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/location"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginStart="5dp"
-                >
+                app:theme="@style/BaseTheme"
+                android:background="@color/black"
+                app:title="HireIn"
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/baseline_work_14"
-                    />
-                <TextView
-                    android:id="@+id/experienceData"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/experience" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:id="@+id/education"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/experience"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginStart="5dp">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/school_black_14dp"
-                    />
-            <TextView
-                android:id="@+id/educationData"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-
-                android:text="@string/education" />
-            </LinearLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-   <View
-       android:id="@+id/seperator"
-       app:layout_constraintTop_toBottomOf="@+id/Details"
-       android:layout_marginLeft="15dp"
-       android:layout_marginRight="15dp"
-       android:background="#A19A9A"
-       android:layout_width="match_parent"
-       android:layout_height="1dp"/>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/userImageAndDetails"
-        android:padding="5dp"
-        app:layout_constraintTop_toBottomOf="@id/seperator"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profilePhoto"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:contentDescription="TODO"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:src="@drawable/baseline_account_circle_24" />
-
-        <!-- Role name and role text -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-
-            android:id="@+id/postOwnerDetails"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            app:layout_constraintLeft_toRightOf="@id/profilePhoto"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-
-        <TextView
-            android:id="@+id/personName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="Role Name"
-            app:layout_constraintTop_toTopOf="parent"
-             />
-
-        <TextView
-            android:id="@+id/roleDetails"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-
-            android:text="Role Details"
-            app:layout_constraintTop_toBottomOf="@id/personName" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/navigate_next_fill0_wght400_grad0_opsz24"
-            />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <View
-        android:id="@+id/seperator1"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#A19A9A"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/userImageAndDetails"
-      />
-
-    <TextView
-        android:id="@+id/jobDescriptionTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/seperator1"
-        android:layout_marginTop="20dp"
-        android:text="Job Description"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent" />
-    <TextView
-        android:id="@+id/jobDescription"
-        android:layout_marginTop="10dp"
-        android:layout_alignParentStart="true"
-        app:layout_constraintTop_toBottomOf="@id/jobDescriptionTitle"
-        android:layout_width="match_parent"
-        android:text ="@string/jobDescription"
-        android:layout_height="wrap_content"/>
-    <View
-        android:id="@+id/seperator3"
-        app:layout_constraintTop_toBottomOf="@id/jobDescription"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="#A19A9A"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/CompanyDetailsWithIcon"
-        android:padding="5dp"
-        app:layout_constraintTop_toBottomOf="@id/jobDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/CompanyImage"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:contentDescription="TODO"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:src="@drawable/baseline_account_circle_24" />
-
-        <!-- Role name and role text -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-
-            android:id="@+id/CompnayDetails"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            app:layout_constraintLeft_toRightOf="@id/CompanyImage"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
+                app:titleTextAppearance="@style/Toolbar.TitleText"
+                app:titleTextColor="@color/white" />
 
             <TextView
-                android:id="@+id/CompanyName"
+                android:id="@+id/jobTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/job_title"
+                android:textStyle="bold"
+                android:paddingStart="15dp"
+                android:paddingTop="15dp"
                 app:layout_constraintStart_toStartOf="parent"
-                android:text="Comapany Name"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/topAppBar" />
+
+            <TextView
+                android:id="@+id/salary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/salary"
+                android:paddingEnd="15dp"
+                android:paddingTop="15dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBaseline_toBaselineOf="@id/jobTitle" />
+
+            <ImageView
+                android:id="@+id/locationIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:src="@drawable/baseline_location_on_24"
+                android:contentDescription="locationIcon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/location"
+                app:layout_constraintBottom_toBottomOf="@id/location"
+                android:paddingStart="15dp"
                 />
 
             <TextView
-                android:id="@+id/CompanyDetails"
+                android:id="@+id/location"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text="@string/location"
+                android:paddingEnd="3dp"
+                app:layout_constraintTop_toBottomOf="@id/jobTitle"
+                app:layout_constraintLeft_toRightOf="@id/locationIcon"
+                />
+
+            <ImageView
+                android:id="@+id/experienceIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:src="@drawable/baseline_work_14"
+                app:layout_constraintStart_toEndOf="@id/location"
+                app:layout_constraintTop_toTopOf="@id/experience"
+                app:layout_constraintBottom_toBottomOf="@id/experience" />
+
+            <TextView
+                android:id="@+id/experience"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
+                android:text="@string/experience"
+                android:paddingEnd="3dp"
+                app:layout_constraintTop_toBottomOf="@id/jobTitle"
+                app:layout_constraintStart_toEndOf="@id/experienceIcon" />
 
+            <ImageView
+                android:id="@+id/educationIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:src="@drawable/school_black_14dp"
+                app:layout_constraintStart_toEndOf="@id/experience"
+                app:layout_constraintTop_toTopOf="@id/experience"
+                app:layout_constraintBottom_toBottomOf="@id/experience" />
+
+            <TextView
+                android:id="@+id/educationTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text="@string/education"
+                app:layout_constraintBottom_toBottomOf="@+id/educationIcon"
+                app:layout_constraintStart_toEndOf="@id/educationIcon"
+                app:layout_constraintTop_toTopOf="@+id/educationIcon" />
+
+            <View
+                android:id="@+id/seperator"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightGrey"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/educationIcon" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profilePhoto"
+                android:layout_width="40dp"
+                android:layout_height="0dp"
+                android:src="@drawable/baseline_account_circle_24"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="15dp"
+                app:layout_constraintTop_toTopOf="@id/personName"
+                app:layout_constraintBottom_toBottomOf="@id/roleDetails"
+                 />
+
+            <TextView
+                android:id="@+id/personName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Role Name"
+                app:layout_constraintStart_toEndOf="@id/profilePhoto"
+                app:layout_constraintTop_toBottomOf="@id/seperator" />
+
+            <TextView
+                android:id="@+id/roleDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Role Details"
+                app:layout_constraintStart_toStartOf="@id/personName"
+                app:layout_constraintTop_toBottomOf="@id/personName" />
+
+            <ImageView
+                android:id="@+id/arrowIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="15dp"
+                android:src="@drawable/navigate_next_fill0_wght400_grad0_opsz24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/profilePhoto"
+                app:layout_constraintBottom_toBottomOf="@id/profilePhoto" />
+
+            <View
+                android:id="@+id/seperator1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightGrey"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/roleDetails" />
+            <TextView
+                android:id="@+id/jobDescriptionTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/job_description"
+                android:textStyle="bold"
+                android:paddingStart="15dp"
+                android:paddingTop="15dp"
+                app:layout_constraintTop_toBottomOf="@id/seperator1"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/jobDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="8dp"
+
+
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:text="@string/jobDescription"
+                app:layout_constraintTop_toBottomOf="@id/jobDescriptionTitle"
+                 />
+
+            <View
+                android:id="@+id/seperator2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/lightGrey"
+                app:layout_constraintTop_toBottomOf="@id/jobDescription"
+               />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/CompanyImage"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentStart="true"
+                android:contentDescription="Company Icon"
+                android:src="@drawable/baseline_account_circle_24"
+                android:layout_marginStart="15dp"
+
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/CompanyName"
+                app:layout_constraintBottom_toBottomOf="@id/CompanyDetails"/>
+            <TextView
+                android:id="@+id/CompanyName"
+                app:layout_constraintLeft_toRightOf="@id/CompanyImage"
+                app:layout_constraintTop_toBottomOf="@id/seperator2"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="CompanyName"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/CompanyDetails"
                 android:text="Company Details"
-                app:layout_constraintTop_toBottomOf="@id/CompanyName" />
+                android:layout_marginStart="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/CompanyName"
+                app:layout_constraintLeft_toRightOf="@id/CompanyImage"/>
+
+            <ImageView
+                android:id="@+id/companyProfileNav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/CompanyDetails"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/seperator2"
+                android:layout_marginEnd="15dp"
+                app:srcCompat="@drawable/navigate_next_fill0_wght400_grad0_opsz24" />
+            <View
+                android:layout_marginTop="5dp"
+                android:id="@+id/seperator3"
+                app:layout_constraintTop_toBottomOf="@id/CompanyDetails"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/lightGrey"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:background="@drawable/rounded_corner"
+                android:text="Apply"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/seperator3" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-        <ImageView
-            android:id="@+id/companyProfileNav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/navigate_next_fill0_wght400_grad0_opsz24"
-            />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <View
-        android:id="@+id/seperator4"
-        app:layout_constraintTop_toBottomOf="@+id/CompanyDetailsWithIcon"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="#A19A9A"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        />
 
-        <Button
-            android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_corner"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/seperator4"
-            android:text="Apply"
-            android:textColor="@color/white"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-</ScrollView>
+    </ScrollView>
 </layout>

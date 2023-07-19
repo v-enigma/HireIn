@@ -16,7 +16,14 @@ class NewPostFragment: Fragment(){
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         println("I am recreated post")
+        setMenuVisibility(false)
+        //(requireActivity() as MainActivity).setupActionBar(binding.topAppBar)
         return inflater.inflate(R.layout.fragment_post,container,false)
+    }
+
+    override fun onResume() {
+        requireActivity().title = "HireIn"
+        super.onResume()
     }
 
 }

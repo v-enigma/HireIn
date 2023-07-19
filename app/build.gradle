@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id  'kotlin-kapt'
-//    id 'androidx.navigation.safeargs'
+    id 'androidx.navigation.safeargs'
 
 }
 
@@ -54,6 +54,7 @@ dependencies {
     kapt "androidx.room:room-compiler:2.5.2"
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
 
 
 }

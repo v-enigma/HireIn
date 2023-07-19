@@ -1,0 +1,75 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="userDetails"
+            type="com.example.hirein.data.ConnectionInfromation" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="16dp">
+
+        <!-- Post owner image -->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profilePhoto"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:contentDescription="TODO"
+            android:src="@drawable/baseline_account_circle_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="5dp"/>
+
+        <!--    &lt;!&ndash; Role name and role text &ndash;&gt;-->
+        <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--        android:id="@+id/constraintLayout"-->
+        <!--        android:layout_toEndOf="@+id/profilePhoto"-->
+        <!--        android:layout_toStartOf="@+id/ellipsis"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+
+        <!--        android:orientation="vertical">-->
+
+        <TextView
+            android:id="@+id/personName"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{userDetails.firstName + userDetails.lastName}"
+            android:paddingStart="5dp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/profilePhoto"
+            app:layout_constraintTop_toTopOf="@+id/profilePhoto" />
+
+
+        <!-- Ellipsis image -->
+
+        <TextView
+            android:id="@+id/roleDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            android:text=""
+            app:layout_constraintBottom_toBottomOf="@+id/profilePhoto"
+            app:layout_constraintLeft_toRightOf="@id/profilePhoto" />
+
+        <ImageView
+            android:id="@+id/options"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:padding="15dp"
+            android:src="@drawable/ellipsis_vertical_svgrepo_com"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

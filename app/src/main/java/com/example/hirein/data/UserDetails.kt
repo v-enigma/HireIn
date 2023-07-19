@@ -1,5 +1,6 @@
 package com.example.hirein.data
 
+import com.example.hirein.data.entity.ProfessionalExperience
 import java.net.URL
 import java.time.LocalDate
 

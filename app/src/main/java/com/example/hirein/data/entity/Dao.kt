@@ -53,7 +53,7 @@ interface JobPostDao {
     fun deleteJobPost(jobPost: JobPost)
 
     @Query("SELECT * FROM jobpost WHERE jobPostId = :jobPostId")
-    fun getJobPostWithTags(jobPostId: String): JobPostWithTags
+    fun getJobPostWithTags(userId: Long): List<JobPost>
 }
 data class JobPostWithTags(
     @Embedded val jobPost: JobPost,

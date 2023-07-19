@@ -30,4 +30,16 @@
     </string>
     <string name="job_title">Job Title</string>
     <string name="jobpostowner_image">JobPostOwner Image</string>
+    <string name="jobRequirements"> Now suppose we live in a perfect world where an owner can have multiple dogs, and that a dog can have multiple owners. To model this schema, our Dog and Owner tables are not enough. Since a dog can have multiple owners, we need to have multiple entries of the same dog id, matching to different </string>
+    <string name="institute_name">Institute Name</string>
+    <string name="job_location">Job Location</string>
+    <string name="working_model">Working model</string>
+    <string name="post_owner_details">Post Owner Details On your device, go to Settings and tap Developer Options</string>
+    <string name="job_description">Job Description</string>
+    <string name="role_name">Role Name</string>
+    <string name="salary_range">Salary Range</string>
+    <string name="employee_count">Employee Count</string>
+    <string name="unfollow">Unfollow</string>
+    <string name="ufollow">Unfollow</string>
+    <string name="search">search</string>
 </resources>
