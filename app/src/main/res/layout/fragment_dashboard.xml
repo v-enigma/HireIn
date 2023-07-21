@@ -4,17 +4,17 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/topAppBar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:theme="@style/BaseTheme"
-        android:background="@color/black"
-        app:title="HireIn"
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:id="@+id/topAppBar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="?attr/actionBarSize"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:theme="@style/BaseTheme"-->
+<!--        android:background="@color/black"-->
+<!--        app:title="HireIn"-->
 
-        app:titleTextAppearance="@style/Toolbar.TitleText"
-        app:titleTextColor="@color/white" />
+<!--        app:titleTextAppearance="@style/Toolbar.TitleText"-->
+<!--        app:titleTextColor="@color/white" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

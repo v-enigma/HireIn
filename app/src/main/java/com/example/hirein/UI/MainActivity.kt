@@ -27,6 +27,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity() {
      lateinit var binding : ActivityMainBinding
      private lateinit var userIdViewModel :UserIdViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         var userId :Long = 1L
         super.onCreate(savedInstanceState)
@@ -47,19 +48,20 @@ class MainActivity : AppCompatActivity() {
         val bundle = Bundle()
         bundle.putLong("userId", userId)
         navHost.navController.setGraph(R.navigation.mobile_navigation, bundle)
-       // setSupportActionBar(binding.topAppBar)
-//        val appBarConfiguration = AppBarConfiguration.Builder(R.id.homeFragment,R.id.connectionsFragment, R.id.newPostFragment,R.id.userDashboardFragment).build()
-//        NavigationUI.setupActionBarWithNavController(this,navHost.navController)
+        setupActionBar(binding.topAppBar)
+        //setSupportActionBar(binding.topAppBar)
+       //val appBarConfiguration = AppBarConfiguration.Builder(R.id.homeFragment,R.id.connectionsFragment, R.id.newPostFragment,R.id.userDashboardFragment).build()
+       //NavigationUI.setupActionBarWithNavController(this,navHost.navController)
 
 
     }
 
 
-    override fun onNavigateUp(): Boolean {
-        val navController = Navigation.findNavController(this,R.id.my_nav_host_fragment)
-        return navController.navigateUp()
-
-    }
+//    override fun onNavigateUp(): Boolean {
+//        val navController = Navigation.findNavController(this,R.id.my_nav_host_fragment)
+//        return navController.navigateUp()
+//
+//    }
 
     private fun setUpBottomNavMenu(navController: NavController){
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav_view)
@@ -89,9 +91,11 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.my_nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
-        val appBarConfiguration = AppBarConfiguration(navController.graph)
-        //R.id.homeFragment,R.id.connectionsFragment, R.id.newPostFragment,R.id.userDashboardFragment
-        NavigationUI.setupActionBarWithNavController(this, navController)
+        val appBarConfiguration = AppBarConfiguration(
+        setOf(R.id.homeFragment,R.id.connectionsFragment, R.id.newPostFragment,R.id.userDashboardFragment))
+        //NavigationUI.setupActionBarWithNavController(this, navController)
+        binding.topAppBar.setupWithNavController(navController, appBarConfiguration)
+
     }
 //    override fun onCreateOptionsMenu(menu: Menu): Boolean {
 //        println("I am inside Activity menu")

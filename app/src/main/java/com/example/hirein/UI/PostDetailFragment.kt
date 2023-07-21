@@ -30,10 +30,10 @@ class PostDetailFragment: Fragment() {
        //val navHostFragment = NavHostFragment.findNavController(this)
         // showing the back button in action bar
         val view = binding.root
-        binding.topAppBar.setNavigationIcon(R.drawable.baseline_arrow_back_24)
-        binding.topAppBar.setNavigationOnClickListener{
+        /*//binding.topAppBar.setNavigationIcon(R.drawable.baseline_arrow_back_24)
+        //binding.topAppBar.setNavigationOnClickListener{
             requireActivity().onNavigateUp()
-        }
+        }*/
         return view
     }
 //    private fun setupBackButton() {
@@ -61,7 +61,7 @@ class PostDetailFragment: Fragment() {
 
     override fun onResume() {
         super.onResume()
-        activity!!.title = "HireIn"
+        //requireActivity().title = "HireIn"
         println("Post Detail Fragment on focus")
     }
 }

@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_connectionsFragment_to_bottomSheetFragment"
             app:destination="@id/bottomSheetFragment" />
+        <action
+            android:id="@+id/action_connectionsFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/newPostFragment"
@@ -47,4 +50,8 @@
             android:name="Index"
             app:argType="integer" />
     </dialog>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.hirein.UI.SearchFragment"
+        android:label="SearchFragment" />
 </navigation>

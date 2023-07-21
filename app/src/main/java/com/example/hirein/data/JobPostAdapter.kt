@@ -60,7 +60,7 @@ class JobPostAdapter(val fragment: Fragment, post : LiveData<List<JobPost>>): Re
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JobPostViewHolder {
-        val viewHolder =JobPostViewHolder.inflate(parent)
+        val viewHolder = JobPostViewHolder.inflate(parent)
 
         return viewHolder
     }

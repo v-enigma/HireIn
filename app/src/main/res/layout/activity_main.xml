@@ -25,9 +25,20 @@
 <!--            app:layout_constraintStart_toStartOf="parent"-->
 <!--            app:layout_constraintTop_toTopOf="parent" />-->
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:theme="@style/BaseTheme"
+            android:background="@color/black"
+            app:title="HireIn"
+            app:titleTextAppearance="@style/Toolbar.TitleText"
+            app:titleTextColor="@color/white" />
+
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/my_nav_host_fragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
+
             android:layout_width="match_parent"
             android:layout_height= "0dp"
             android:layout_weight="1"
