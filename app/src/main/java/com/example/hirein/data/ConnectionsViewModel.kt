@@ -18,6 +18,7 @@ class ConnectionsViewModel:ViewModel() {
       }
     companion object{
        fun initialize(size :Int ,deletedList: MutableList<Boolean>){
+           println("Calling the initialize function_________________________________________")
            var i = size
            while(i > 0){
               deletedList.add(true)
@@ -58,12 +59,13 @@ class ConnectionsViewModel:ViewModel() {
     }
     fun setValues():List<ConnectionInfromation>{
         val list = mutableListOf<ConnectionInfromation>()
-        var index =0
+        var ind =0
+        println("${deletedList.size} is the size-------------------------------------------")
         deletedList.forEach{
-           if(it){
-               list.add(connections[index])
+           if( it){
+               list.add(connections[ind])
            }
-            index++
+            ind++
         }
         return list.toList()
     }
@@ -97,7 +99,7 @@ class ConnectionsViewModel:ViewModel() {
 //        }
        println("Inside search")
         val results = mutableListOf<ConnectionInfromation>()
-
+        println("${deletedList.size}")
         if(searchText?.isEmpty() == true){
             _followers.value = setValues()
         }
@@ -123,5 +125,4 @@ class ConnectionsViewModel:ViewModel() {
      println("$results")
     return results
     }
-
 }

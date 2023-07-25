@@ -25,8 +25,8 @@ class JobsFragment: Fragment() {
       // checking the received arguments
         println(arguments?.getLong("userId") )
         viewModel = ViewModelProvider(this).get(JobPostViewModel::class.java)
-        println("I am create Method call in Home Fragment")
-        hideUpButton()
+       // println("I am create Method call in Home Fragment")
+        //hideUpButton()
         binding.jobPosts.adapter = JobPostAdapter(this, viewModel.getData())
         //binding.topAppBar.inflateMenu(R.menu.search_menu)
 
@@ -38,10 +38,7 @@ class JobsFragment: Fragment() {
         super.onDestroy()
     }
 
-    override fun onStart() {
-        super.onStart()
 
-    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         println("I am inside opions created")
@@ -53,8 +50,8 @@ class JobsFragment: Fragment() {
        requireActivity().title = "HireIn"
         println("Jobs Fragment on focus")
     }
-    private fun hideUpButton(){
-        (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
-    }
+//    private fun hideUpButton(){
+//        (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+//    }
 
 }

@@ -15,6 +15,8 @@ interface CompanyDao {
 
     @Query("SELECT * FROM company WHERE companyId = :companyId")
     fun getCompanyById(companyId: Long): Company
+
+
 }
 @Dao
 interface UserDao {
@@ -29,6 +31,10 @@ interface UserDao {
 
     @Query("SELECT * FROM user WHERE userId = :userId")
     fun getUserById(userId: Long): User
+    @Query("SELECT followerId, FROM Follower  where Follower.userId = :userId ")
+    fun getConnections(userId: Long) :List<Long>
+    @Query("DELETE FROM Follower where Follower.followerId = :followerId AND Follower.userId = userId ")
+    fun removeConnections(follwerId:Long, userId: Long)
 }
 @Dao
 interface EducationalQualificationDao {
@@ -73,9 +79,11 @@ interface AddressDao {
 
     @Delete
     fun deleteAddress(address: Address)
+    @Query("SELECT * FROM Company where company.name LIKE '%'||:companyName || '%'")
+    fun getCompanyId(companyName:String):List<Long>
 
     @Query("SELECT * FROM address WHERE companyId = :companyId")
-    fun getAddressesForCompany(companyId: Long): List<Address>
+    fun getAddressesForCompany(): List<Address>
 
 }
 

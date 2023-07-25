@@ -33,7 +33,8 @@ class ConnectionsFragment:Fragment() {
     ): View? {
          _binding = FragmentConnectionsBinding.inflate(inflater,container,false)
         viewModel = ViewModelProvider(this).get(ConnectionsViewModel::class.java)
-        viewModel.getData() // to intialize static data
+        if(!viewModel.followers.isInitialized)
+            viewModel.getData() // to intialize static data
         setFragmentResultListener("Index") { key, bundle -> // setting the listener to respond to unfollow in bottomn sheet fragment
             println(" event responded")
             val index = bundle.getInt("Index")
@@ -55,25 +56,23 @@ class ConnectionsFragment:Fragment() {
             it?.let { adapter.submitList(it) }
         }
         binding.connections.adapter = adapter
-
+        setUpSearchFeature()
         return binding.root
     }
-    override fun onStart(){
-        super.onStart()
+
+    private fun setUpSearchFeature(){
         menuProvider = object: MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.search_icon,menu)
                 val searchfun  = menu.findItem((R.id.action_search))
                 val searchView :SearchView = searchfun.actionView as SearchView
 
-               // searchView.setIconifiedByDefault(false)
+                // searchView.setIconifiedByDefault(false)
                 searchView.queryHint ="Search Users"
                 searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
                     override fun onQueryTextSubmit(query: String?): Boolean {
-
                         return true
                     }
-
 
                     override fun onQueryTextChange(query: String?): Boolean {
                         viewModel.search(query)
