@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 
 class UserIdViewModel: ViewModel() {
     private var _userId = MutableLiveData<Long>()
-    val userId: LiveData<Long>
-    get() = _userId
+    val userId: Long
+    get() = _userId.value!!
 
     fun setUserId(id: Long){
         _userId.value = id

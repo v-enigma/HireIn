@@ -48,7 +48,7 @@ class PostDetailFragment: Fragment() {
 //
 //        }
 //    }
-    @Deprecated("Deprecated in Java")
+
    /* override fun onOptionsItemSelected(item: MenuItem): Boolean
     {
         // handle the up button here

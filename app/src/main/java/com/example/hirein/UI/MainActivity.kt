@@ -29,29 +29,18 @@ class MainActivity : AppCompatActivity() {
      private lateinit var userIdViewModel :UserIdViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        var userId :Long = 1L
+        var userId = 1L
         super.onCreate(savedInstanceState)
         userIdViewModel = ViewModelProvider(this).get(UserIdViewModel::class.java)
-        //required for the app while running with loginActivity to get the userId for the fragment
-     /*   userIdViewModel.userId.value?.let{ userId = userIdViewModel.userId.value as Long  }?: run{
-            userId = intent?.getLongExtra("userId",-1)  as Long
-            when(userId){
-                -1L -> return
-                else -> userIdViewModel.setUserId(userId)
-            }
-            println("Came out of the create")
-
-        }*/
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
+        userIdViewModel.setUserId(userId)
+        println("Setup  userId")
         val navHost = supportFragmentManager.findFragmentById(R.id.my_nav_host_fragment) as NavHostFragment
         setBottomNavigationWithHideBehaviour(navHost)
         val bundle = Bundle()
         bundle.putLong("userId", userId)
         navHost.navController.setGraph(R.navigation.mobile_navigation, bundle)
         setupActionBar(binding.topAppBar)
-        //setSupportActionBar(binding.topAppBar)
-       //val appBarConfiguration = AppBarConfiguration.Builder(R.id.homeFragment,R.id.connectionsFragment, R.id.newPostFragment,R.id.userDashboardFragment).build()
-       //NavigationUI.setupActionBarWithNavController(this,navHost.navController)
 
 
     }

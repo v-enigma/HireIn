@@ -9,6 +9,7 @@ import com.example.hirein.Factories.AdapterFactory
 import com.example.hirein.R
 import com.example.hirein.data.JobPostViewModel
 import com.example.hirein.data.SharedJobPostData
+import com.example.hirein.data.UserIdViewModel
 import com.example.hirein.data.entity.JobPostAdapter
 import com.example.hirein.data.model.JobPostData
 import com.example.hirein.databinding.FragmentJobsBinding
@@ -18,6 +19,7 @@ class JobsFragment: Fragment() {
     private val binding get() =_binding!!
     private lateinit var  viewModel: JobPostViewModel
     private lateinit var sharedViewModel: SharedJobPostData
+    private lateinit var userIdViewModel: UserIdViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,15 +28,16 @@ class JobsFragment: Fragment() {
         _binding = FragmentJobsBinding.inflate(layoutInflater,container,false)
         val view = binding.root
       // checking the received arguments
-        println(arguments?.getLong("userId") )
-        viewModel = ViewModelProvider(this).get(JobPostViewModel::class.java)
+
+        userIdViewModel = ViewModelProvider(requireActivity())[UserIdViewModel::class.java]
+        println("viewModel intialized")
+        viewModel = ViewModelProvider(this)[JobPostViewModel::class.java]
        // println("I am create Method call in Home Fragment")
         //hideUpButton()
         sharedViewModel = ViewModelProvider(requireActivity()).get(SharedJobPostData::class.java)
         binding.jobPosts.adapter = JobPostAdapter(this, viewModel.getData()){
             jobPostData -> sharedViewModel.jobPostData = jobPostData
         }
-
         //binding.topAppBar.inflateMenu(R.menu.search_menu)
 
         return view
@@ -44,14 +47,10 @@ class JobsFragment: Fragment() {
         println("Method call to Destroy in Home Fragment")
         super.onDestroy()
     }
-
-
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         println("I am inside opions created")
         inflater.inflate(R.menu.search_menu,menu)
     }
-
     override fun onResume() {
         super.onResume()
        requireActivity().title = "HireIn"
