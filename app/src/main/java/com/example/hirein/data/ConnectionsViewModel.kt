@@ -1,24 +1,18 @@
 package com.example.hirein.data
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 
 class ConnectionsViewModel:ViewModel() {
-      private  var _searchResults = MutableLiveData<MutableList<ConnectionInfromation>>()
-       var searchResults :MutableLiveData<MutableList<ConnectionInfromation>> = _searchResults
+      private  var _searchResults = MutableLiveData<MutableList<ConnectionInformation>>()
+       var searchResults :MutableLiveData<MutableList<ConnectionInformation>> = _searchResults
        private var accessedOnce = false
-      init{
-          println("connections ViewModel creation")
 
-
-      }
     companion object{
        fun initialize(size :Int ,deletedList: MutableList<Boolean>){
-           println("Calling the initialize function_________________________________________")
+           //println("Calling the initialize function_________________________________________")
            var i = size
            while(i > 0){
               deletedList.add(true)
@@ -28,37 +22,37 @@ class ConnectionsViewModel:ViewModel() {
     }
 
        private  var connections = listOf(
-            ConnectionInfromation(1,"R","V", "Zoho", " ", "MTS"),
-            ConnectionInfromation(2,"Ravan","V", "Zoho", " ", "MTS"),
-            ConnectionInfromation(3,"Raj","V", "Zoho", " ", "MTS"),
-            ConnectionInfromation(4,"kumar","V", "Zoho", " ", "MTS"),
-            ConnectionInfromation(5,"Rar","V", "Zoho", " ", "MTS"),
-            ConnectionInfromation(6,"Rajkumar","V", "Zoho", " ", "MTS"),
-            ConnectionInfromation(7,"Rajkumar","V", "Zoho", " ", "MTS"),
-            ConnectionInfromation(8,"Rajkumar","V", "Zoho", " ", "MTS"),
-            ConnectionInfromation(9,"Rajkumar","V", "Zoho", " ", "MTS"),
-            ConnectionInfromation(10,"Rajkumar","V", "Zoho", " ", "MTS"),
-            ConnectionInfromation(11,"Rajkumar","V", "Zoho", " ", "MTS"),
-            ConnectionInfromation(12,"Rajkumar","V", "Zoho", " ", "MTS"),
-            ConnectionInfromation(13,"Rajkumar","V", "Zoho", " ", "MTS"),
-            ConnectionInfromation(14,"Rajkumar","V", "Zoho", " ", "MTS"),
-            ConnectionInfromation(15,"Rajkumar","V", "Zoho", " ", "MTS"),
-            ConnectionInfromation(16,"Rajkumar","V", "Zoho", " ", "MTS")
+            ConnectionInformation(1,"R","V", "Zoho", " ", "MTS"),
+            ConnectionInformation(2,"Ravan","V", "Zoho", " ", "MTS"),
+            ConnectionInformation(3,"Raj","V", "Zoho", " ", "MTS"),
+            ConnectionInformation(4,"kumar","V", "Zoho", " ", "MTS"),
+            ConnectionInformation(5,"Rar","V", "Zoho", " ", "MTS"),
+            ConnectionInformation(6,"Rajkumar","V", "Zoho", " ", "MTS"),
+            ConnectionInformation(7,"Rajkumar","V", "Zoho", " ", "MTS"),
+            ConnectionInformation(8,"Rajkumar","V", "Zoho", " ", "MTS"),
+            ConnectionInformation(9,"Rajkumar","V", "Zoho", " ", "MTS"),
+            ConnectionInformation(10,"Rajkumar","V", "Zoho", " ", "MTS"),
+            ConnectionInformation(11,"Rajkumar","V", "Zoho", " ", "MTS"),
+            ConnectionInformation(12,"Rajkumar","V", "Zoho", " ", "MTS"),
+            ConnectionInformation(13,"Rajkumar","V", "Zoho", " ", "MTS"),
+            ConnectionInformation(14,"Rajkumar","V", "Zoho", " ", "MTS"),
+            ConnectionInformation(15,"Rajkumar","V", "Zoho", " ", "MTS"),
+            ConnectionInformation(16,"Rajkumar","V", "Zoho", " ", "MTS")
         )
     private val deletedList = mutableListOf<Boolean>()
 
 
-    private var _followers = MutableLiveData<List<ConnectionInfromation>>()
-    val followers : LiveData<List<ConnectionInfromation>> get() = _followers
-     fun getData():LiveData<List<ConnectionInfromation>>{
+    private var _followers = MutableLiveData<List<ConnectionInformation>>()
+    val followers : LiveData<List<ConnectionInformation>> get() = _followers
+     fun getData():LiveData<List<ConnectionInformation>>{
        initialize(connections.size,deletedList)
        if(_followers.value == null){
           _followers.value =  setValues()
        }
         return followers
     }
-    fun setValues():List<ConnectionInfromation>{
-        val list = mutableListOf<ConnectionInfromation>()
+    fun setValues():List<ConnectionInformation>{
+        val list = mutableListOf<ConnectionInformation>()
         var ind =0
         println("${deletedList.size} is the size-------------------------------------------")
         deletedList.forEach{
@@ -89,7 +83,7 @@ class ConnectionsViewModel:ViewModel() {
             }
         }
     }
-    fun search(searchText: String?):List<ConnectionInfromation>{
+    fun search(searchText: String?):List<ConnectionInformation>{
         println("$deletedList")
         _searchResults.value = setValues().toMutableList()
         println("I am inside method search")
@@ -98,7 +92,7 @@ class ConnectionsViewModel:ViewModel() {
 //            accessedOnce = true
 //        }
        println("Inside search")
-        val results = mutableListOf<ConnectionInfromation>()
+        val results = mutableListOf<ConnectionInformation>()
         println("${deletedList.size}")
         if(searchText?.isEmpty() == true){
             _followers.value = setValues()

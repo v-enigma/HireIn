@@ -8,13 +8,16 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.hirein.Factories.AdapterFactory
 import com.example.hirein.R
 import com.example.hirein.data.JobPostViewModel
+import com.example.hirein.data.SharedJobPostData
 import com.example.hirein.data.entity.JobPostAdapter
+import com.example.hirein.data.model.JobPostData
 import com.example.hirein.databinding.FragmentJobsBinding
 
 class JobsFragment: Fragment() {
     private  var _binding: FragmentJobsBinding?= null
     private val binding get() =_binding!!
     private lateinit var  viewModel: JobPostViewModel
+    private lateinit var sharedViewModel: SharedJobPostData
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,14 +30,18 @@ class JobsFragment: Fragment() {
         viewModel = ViewModelProvider(this).get(JobPostViewModel::class.java)
        // println("I am create Method call in Home Fragment")
         //hideUpButton()
-        binding.jobPosts.adapter = JobPostAdapter(this, viewModel.getData())
+        sharedViewModel = ViewModelProvider(requireActivity()).get(SharedJobPostData::class.java)
+        binding.jobPosts.adapter = JobPostAdapter(this, viewModel.getData()){
+            jobPostData -> sharedViewModel.jobPostData = jobPostData
+        }
+
         //binding.topAppBar.inflateMenu(R.menu.search_menu)
 
         return view
     }
     override fun onDestroy() {
         _binding = null
-        println("Method call to Destroy in HOme Fragment")
+        println("Method call to Destroy in Home Fragment")
         super.onDestroy()
     }
 

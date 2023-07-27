@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_connectionsFragment_to_bottomSheetFragment"
             app:destination="@id/bottomSheetFragment" />
+        <action
+            android:id="@+id/action_connectionsFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/newPostFragment"
@@ -36,8 +39,8 @@
         android:name="com.example.hirein.UI.PostDetailFragment"
          >
         <action
-            android:id="@+id/action_postDetailFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_postDetailFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <dialog
         android:id="@+id/bottomSheetFragment"
@@ -47,4 +50,12 @@
             android:name="Index"
             app:argType="integer" />
     </dialog>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.hirein.UI.ProfileFragment"
+        android:label="ProfileFragment" >
+        <argument
+            android:name="userId"
+            app:argType="long" />
+    </fragment>
 </navigation>

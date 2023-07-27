@@ -12,14 +12,15 @@ import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hirein.R
 import com.example.hirein.UI.JobsFragmentDirections
+import com.example.hirein.data.model.JobPostData
 import de.hdodenhof.circleimageview.CircleImageView
 
-class JobPostAdapter(val fragment: Fragment, post : LiveData<List<JobPost>>): RecyclerView.Adapter<JobPostAdapter.JobPostViewHolder>() {
+class JobPostAdapter(val fragment: Fragment, post : LiveData<List<JobPostData>>,val callback: ( jobPostData:JobPostData)-> Unit): RecyclerView.Adapter<JobPostAdapter.JobPostViewHolder>() {
 
-    var jobPosts = post.value
+    var jobPostsData = post.value
 
 
-     class JobPostViewHolder(item :View ):RecyclerView.ViewHolder(item){
+    class JobPostViewHolder(item :View ):RecyclerView.ViewHolder(item){
          var roleName : TextView = item.findViewById(R.id.roleName)
          var salaryRange:TextView = item.findViewById(R.id.salaryRange)
          var instituteName:TextView = item.findViewById(R.id.instituteName)
@@ -31,7 +32,6 @@ class JobPostAdapter(val fragment: Fragment, post : LiveData<List<JobPost>>): Re
          var jobLocation :TextView = item.findViewById(R.id.jobLocation)
          var jobRequirement :TextView = item.findViewById(R.id.jobRequirements)
 
-
          companion object{
              fun inflate(parent: ViewGroup): JobPostViewHolder{
                  val layoutInflater = LayoutInflater.from(parent.context)
@@ -39,7 +39,7 @@ class JobPostAdapter(val fragment: Fragment, post : LiveData<List<JobPost>>): Re
                  return JobPostViewHolder(view)
              }
          }
-         fun bind(item :JobPost){
+         fun bind(item :JobPostData){
              //have to do
              //this.salaryRange = item
              var salaryRange :String ="Rs "
@@ -65,18 +65,21 @@ class JobPostAdapter(val fragment: Fragment, post : LiveData<List<JobPost>>): Re
         return viewHolder
     }
 
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun getItemCount(): Int {
-        return jobPosts?.size ?: 0
+        return jobPostsData?.size ?: 0
     }
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: JobPostViewHolder, position: Int) {
-        val item = jobPosts?.get(position)
+        val item = jobPostsData?.get(position)
         item?.let{holder.bind(it)}
         holder.itemView.setOnClickListener {
-            val direction = JobsFragmentDirections.actionHomeFragmentToPostDetailFragment()
-            findNavController(fragment).navigate(direction)
+           item?.let{
+               callback(item)
+               val direction = JobsFragmentDirections.actionHomeFragmentToPostDetailFragment()
+               findNavController(fragment).navigate(direction)
+           }
+
         }
     }
 }

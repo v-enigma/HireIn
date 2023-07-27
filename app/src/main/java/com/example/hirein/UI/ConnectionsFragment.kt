@@ -1,20 +1,15 @@
 package com.example.hirein.UI
 
-import android.os.Build
 import android.os.Bundle
 import android.view.*
-import android.widget.ImageView
-import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.hirein.R
-import com.example.hirein.data.ConnectionInfromation
 import com.example.hirein.data.ConnectionsViewModel
 import com.example.hirein.data.entity.ConnectionsAdapter
 import com.example.hirein.databinding.FragmentConnectionsBinding
@@ -42,13 +37,19 @@ class ConnectionsFragment:Fragment() {
                 viewModel.deleteFollower(index)
             }
         }
-        val adapter = ConnectionsAdapter { index ->
+        val itemClickListener ={
+            //val directions = ConnectionsFragmentDirections
+            //findNavController().navigate()
+            println("Clicked")
+        }
+        val adapter = ConnectionsAdapter(this) { index ->
             val directions =
                 ConnectionsFragmentDirections.actionConnectionsFragmentToBottomSheetFragment(index)
             findNavController().navigate(directions)
             //setMenuVisibility(true)
-
         }
+
+
 
         //binding.topAppBar.inflateMenu(R.menu.search_menu)
 
@@ -59,6 +60,7 @@ class ConnectionsFragment:Fragment() {
         setUpSearchFeature()
         return binding.root
     }
+
 
     private fun setUpSearchFeature(){
         menuProvider = object: MenuProvider {

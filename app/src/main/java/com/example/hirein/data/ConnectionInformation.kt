@@ -1,7 +1,7 @@
 package com.example.hirein.data
 
-data class ConnectionInfromation(
-    val id:Int,
+data class ConnectionInformation(
+    val id : Long,
     val firstName:String,
     val lastName: String,
     val companyName:String,

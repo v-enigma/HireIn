@@ -1,30 +1,29 @@
 package com.example.hirein.data.entity
 
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
-import androidx.annotation.RequiresApi
-import androidx.lifecycle.LiveData
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hirein.R
-import com.example.hirein.data.ConnectionInfromation
+import com.example.hirein.UI.ConnectionsFragmentDirections
+import com.example.hirein.data.ConnectionInformation
 import com.example.hirein.data.ConnectionsDiffItemCallback
 import com.example.hirein.databinding.ConnectionBinding
-import de.hdodenhof.circleimageview.CircleImageView
 
-class ConnectionsAdapter(val onItemClicked: (Int)-> Unit): ListAdapter<ConnectionInfromation, ConnectionsAdapter.ConnectionViewHolder>(
+class ConnectionsAdapter(val fragment: Fragment, val onOptionsClicked: (Int)-> Unit): ListAdapter<ConnectionInformation, ConnectionsAdapter.ConnectionViewHolder>(
     ConnectionsDiffItemCallback()
 ){
    // val date = LocalDate(1998,2,1)
 
   // private var connections  = connections.value
+     private lateinit var onClickListener : View.OnClickListener
 
     class ConnectionViewHolder(val binding: ConnectionBinding):RecyclerView.ViewHolder(binding.root){
         val options : ImageView = binding.options
+
          companion object {
              fun inflateFrom(parent: ViewGroup):ConnectionViewHolder{
                  val layoutInflater = LayoutInflater.from(parent.context)
@@ -33,22 +32,23 @@ class ConnectionsAdapter(val onItemClicked: (Int)-> Unit): ListAdapter<Connectio
                  return ConnectionViewHolder(binding )
              }
          }
-        fun bind(item: ConnectionInfromation){
+        fun bind(item: ConnectionInformation){
         binding.connection = item
         }
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ConnectionViewHolder {
 
         val viewHolder = ConnectionViewHolder.inflateFrom(parent)
         // println("I am inside viewHolder")
         viewHolder.options.setOnClickListener{
-            onItemClicked(viewHolder.adapterPosition)
+            onOptionsClicked(viewHolder.adapterPosition)
         }
        return viewHolder
     }
 
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
 //    override fun getItemCount(): Int {
 //        val count = connections?.size ?: 0
 //        if(count ==0 )
@@ -61,6 +61,11 @@ class ConnectionsAdapter(val onItemClicked: (Int)-> Unit): ListAdapter<Connectio
         //println("$position of the view")
         val item = getItem(position)
         holder.bind(item)
+        holder.binding.root.setOnClickListener{
+            val directions = ConnectionsFragmentDirections.actionConnectionsFragmentToProfileFragment(item.id)
+            findNavController(fragment).navigate(directions)
+        }
+
 /*        if(!item.profilePhoto.isEmpty()){
             val bitmap = BitmapFactory.decodeFile(item.profilePhoto)
             holder.profileImage.setImageBitmap(bitmap)
