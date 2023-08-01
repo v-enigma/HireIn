@@ -2,12 +2,12 @@ package com.example.hirein.data.model
 
 import java.time.LocalDate
 
-data class EducationQualification(
+data class EducationData(
     val instituteName : String,
     val degree : String,
     val specialization: String,
-    val startDate: LocalDate,
-    val endDateOrExpectedEndDate: LocalDate?,
+    val startDate: Long,
+    val endDateOrExpectedEndDate: Long?,
     val grade: Float?,
     val description :String
 )

@@ -1,6 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+    </data>
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:scrollbars="none">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Venugopal T"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_profilePhoto"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/baseline_person_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_jobPostCount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="23"
+            app:layout_constraintEnd_toEndOf="@+id/JobPostsMade"
+            app:layout_constraintStart_toStartOf="@+id/JobPostsMade"
+            app:layout_constraintTop_toBottomOf="@id/guidelineCenter" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_jobsAppliedCount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="23"
+            app:layout_constraintEnd_toEndOf="@+id/tv_jobsApplied"
+            app:layout_constraintStart_toStartOf="@+id/tv_jobsApplied"
+            app:layout_constraintTop_toBottomOf="@id/guidelineCenter" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineCenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <!-- Post made TextView -->
+        <TextView
+            android:id="@+id/JobPostsMade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Post made"
+            android:layout_marginRight="50dp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_jobsApplied"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_jobPostCount" />
+
+        <!-- Jobs Applied TextView -->
+        <TextView
+            android:id="@+id/tv_jobsApplied"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="Jobs Applied"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/JobPostsMade"
+            app:layout_constraintTop_toBottomOf="@+id/tv_jobPostCount" />
+
+        <TextView
+            android:id="@+id/tv_EducationalDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Education Details"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/JobPostsMade" />
+
+        <androidx.recyclerview.widget.RecyclerView
+
+            app:layout_constraintTop_toBottomOf="@id/tv_EducationalDetails"
+            app:layout_constraintStart_toStartOf="parent"
+
+            android:id="@+id/rvEducational_Experiences"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_professional_Experiences"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Professional Details"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvEducational_Experiences" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            app:layout_constraintTop_toBottomOf="@id/tv_professional_Experiences"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/rvProfessional_Expression"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+   </ScrollView>
+</layout>

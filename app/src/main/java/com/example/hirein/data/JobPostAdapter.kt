@@ -65,11 +65,10 @@ class JobPostAdapter(val fragment: Fragment, post : LiveData<List<JobPostData>>,
         return viewHolder
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun getItemCount(): Int {
         return jobPostsData?.size ?: 0
     }
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onBindViewHolder(holder: JobPostViewHolder, position: Int) {
         val item = jobPostsData?.get(position)
         item?.let{holder.bind(it)}

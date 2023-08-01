@@ -16,10 +16,6 @@ import com.example.hirein.databinding.ConnectionBinding
 class ConnectionsAdapter(val fragment: Fragment, val onOptionsClicked: (Int)-> Unit): ListAdapter<ConnectionInformation, ConnectionsAdapter.ConnectionViewHolder>(
     ConnectionsDiffItemCallback()
 ){
-   // val date = LocalDate(1998,2,1)
-
-  // private var connections  = connections.value
-     private lateinit var onClickListener : View.OnClickListener
 
     class ConnectionViewHolder(val binding: ConnectionBinding):RecyclerView.ViewHolder(binding.root){
         val options : ImageView = binding.options
@@ -29,7 +25,7 @@ class ConnectionsAdapter(val fragment: Fragment, val onOptionsClicked: (Int)-> U
                  val layoutInflater = LayoutInflater.from(parent.context)
                  val binding = ConnectionBinding.inflate(layoutInflater,parent,false)
                  //val view = layoutInflater.inflate(R.layout.connection,parent,false) as ConstraintLayout
-                 return ConnectionViewHolder(binding )
+                 return ConnectionViewHolder(binding)
              }
          }
         fun bind(item: ConnectionInformation){

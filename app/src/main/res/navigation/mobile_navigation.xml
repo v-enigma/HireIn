@@ -32,7 +32,7 @@
          />
     <fragment
         android:id="@+id/userDashboardFragment"
-        android:name="com.example.hirein.UI.UserDashboardFragment"
+        android:name="com.example.hirein.UI.ProfileFragment"
          />
     <fragment
         android:id="@+id/postDetailFragment"
@@ -52,7 +52,7 @@
     </dialog>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.hirein.UI.ProfileFragment"
+        android:name="com.example.hirein.UI.UserDetailsFragment"
         android:label="ProfileFragment" >
         <argument
             android:name="userId"

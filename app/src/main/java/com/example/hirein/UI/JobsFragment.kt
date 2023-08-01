@@ -38,6 +38,7 @@ class JobsFragment: Fragment() {
         binding.jobPosts.adapter = JobPostAdapter(this, viewModel.getData()){
             jobPostData -> sharedViewModel.jobPostData = jobPostData
         }
+
         //binding.topAppBar.inflateMenu(R.menu.search_menu)
 
         return view

@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="educationData"
+            type="com.example.hirein.data.model.EducationData" />
+    </data>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -19,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:textSize="25sp"
-        android:text="Institute Name"
+        android:text="@{educationData.instituteName}"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_icon"/>
 
@@ -27,14 +33,14 @@
         android:id="@+id/tv_specialization"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bachelor of Technology - BTech, Computer Science"
+        android:text="@{educationData.degree + ` - ` + educationData.specialization}"
         app:layout_constraintStart_toStartOf="@+id/tv_institueName"
         app:layout_constraintTop_toBottomOf="@id/tv_institueName" />
     <TextView
         android:id="@+id/tv_Duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="june 2015 - april 2019"
+        android:text=""
         app:layout_constraintStart_toStartOf="@+id/tv_specialization"
         app:layout_constraintTop_toBottomOf="@id/tv_specialization"/>
     <TextView
@@ -52,13 +58,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_grade"
         app:layout_constraintStart_toStartOf="@id/tv_grade"
         android:text="Learnt building concepts of computers"
-        android:visibility="gone"
-        />
+        android:visibility="gone" />
 
-
-
-
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

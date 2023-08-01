@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModel
 
 class ConnectionsViewModel:ViewModel() {
       private  var _searchResults = MutableLiveData<MutableList<ConnectionInformation>>()
-       var searchResults :MutableLiveData<MutableList<ConnectionInformation>> = _searchResults
-       private var accessedOnce = false
+       //var searchResults :MutableLiveData<MutableList<ConnectionInformation>> = _searchResults
+
 
     companion object{
        fun initialize(size :Int ,deletedList: MutableList<Boolean>){
