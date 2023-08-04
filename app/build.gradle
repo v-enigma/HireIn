@@ -54,5 +54,9 @@ dependencies {
     kapt "androidx.room:room-compiler:2.5.2"
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-
+    // for coroutines in the viewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
+    //for coroutines in the project
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1"
 }

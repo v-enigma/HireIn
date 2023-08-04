@@ -1,8 +1,8 @@
 package com.example.hirein.data.model
 
-import com.example.hirein.data.entity.Address
-import com.example.hirein.data.entity.Company
-import com.example.hirein.data.entity.EmploymentType
+import com.example.hirein.data.DB.entity.Address
+import com.example.hirein.data.DB.entity.Company
+import com.example.hirein.data.DB.entity.EmploymentType
 import java.time.LocalDate
 
 data class ProfessionalExperienceData(

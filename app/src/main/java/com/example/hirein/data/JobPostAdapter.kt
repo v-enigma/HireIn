@@ -21,7 +21,7 @@ class JobPostAdapter(val fragment: Fragment, post : LiveData<List<JobPostData>>,
 
 
     class JobPostViewHolder(item :View ):RecyclerView.ViewHolder(item){
-         var roleName : TextView = item.findViewById(R.id.roleName)
+         //var roleName : TextView = item.findViewById(R.id.roleName)
          var salaryRange:TextView = item.findViewById(R.id.salaryRange)
          var instituteName:TextView = item.findViewById(R.id.instituteName)
          //var employmentCount :TextView = item.findViewById(R.id.employeeCount)
@@ -53,7 +53,7 @@ class JobPostAdapter(val fragment: Fragment, post : LiveData<List<JobPostData>>,
                  salaryRange = "Rs ${item.minSalary} - ${item.maxSalary}"
              }
              this.salaryRange.text = salaryRange
-             this.roleName.text = item.jobTitle
+             //this.roleName.text = item.jobTitle
              this.jobLocation.text = item.workLocation
              this.jobType.text = item.locationType
          }

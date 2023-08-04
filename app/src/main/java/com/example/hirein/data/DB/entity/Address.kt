@@ -1,4 +1,4 @@
-package com.example.hirein.data.entity
+package com.example.hirein.data.DB.entity
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
@@ -15,6 +15,8 @@ import androidx.room.PrimaryKey
      ]
 )
 data class Address(
+     @PrimaryKey(autoGenerate = true)
+     val addressId :Long = 0,
      val plotNo:String,
      val street :String,
      val landMark :String,
@@ -24,6 +26,5 @@ data class Address(
      val pincode :Int,
      val companyId: Long)
 {
-     @PrimaryKey(autoGenerate = true)
-     val addressId :Long = 0
+
 }

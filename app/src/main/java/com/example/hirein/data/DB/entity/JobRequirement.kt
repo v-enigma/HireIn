@@ -1,4 +1,4 @@
-package com.example.hirein.data.entity
+package com.example.hirein.data.DB.entity
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
@@ -13,10 +13,8 @@ import androidx.room.PrimaryKey
     ]
 
 )
-data class jobRequirement(
+data class JobRequirement(
     val jobPostId :Long,
-    val requirement: String
-) {
+    val requirement: String,
     @PrimaryKey(autoGenerate = true)
-    val requirementId: Long = 0
-}
+    val requirementId: Long = 0)

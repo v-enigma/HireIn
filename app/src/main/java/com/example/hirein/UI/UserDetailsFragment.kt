@@ -13,17 +13,17 @@ class UserDetailsFragment: Fragment() {
     private  var _binding: FragmentUserDetailsBinding? = null
     private val  binding get() = _binding!!
     //private val args: ProfileFragmentArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentUserDetailsBinding.inflate(layoutInflater,container, false)
         binding.rvProfessionalExp.adapter = ProfessionalExperienceAdapter()
         binding.rvEducationalExperiences.adapter = EducationalExperienceAdapter()
         //binding.rvJobPosts.adapter = JobPostAdapter()
-
-       return binding.root
+        return binding.root
     }
 }

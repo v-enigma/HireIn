@@ -1,6 +1,8 @@
 package com.example.hirein.data.entity
 
 import androidx.room.*
+import com.example.hirein.data.DB.entity.*
+import com.example.hirein.data.model.JobPostData
 
 @Dao
 interface CompanyDao {
@@ -58,17 +60,17 @@ interface JobPostDao {
     @Delete
     fun deleteJobPost(jobPost: JobPost)
 
-    @Query("SELECT * FROM jobpost WHERE jobPostId = :jobPostId")
-    fun getJobPostWithTags(userId: Long): List<JobPost>
+    @Query("SELECT * FROM JobPost WHERE JobPost.postOwnerId =:postOwnerId")
+    fun getJobPostFeed(postOwnerId:Long): List<JobPost>
 }
-data class JobPostWithTags(
-    @Embedded val jobPost: JobPost,
-    @Relation(
-        parentColumn = "jobPostId",
-        entityColumn = "jobPostId"
-    )
-    val tags: List<Tag>
-)
+interface TagsDao{
+    @Query("SELECT * FROM Tag WHERE Tag.jobPostId = :postId" )
+    fun getTagsOfAJobPost(postId:Long):List<String>
+}
+interface SkillsDao{
+    @Query("SELECT name FROM Skills WHERE Skills.jobPostId =:jobPostId ")
+    fun getSkills(jobPostId:Long):List<String>
+}
 
 interface AddressDao {
     @Insert

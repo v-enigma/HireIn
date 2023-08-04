@@ -1,4 +1,4 @@
-package com.example.hirein.data.entity
+package com.example.hirein.data.DB.entity
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
@@ -13,7 +13,7 @@ import androidx.room.PrimaryKey
 )
 data class Tag(
     val jobPostId: Long,
-    val tag :String){
+    val tag :String,
     @PrimaryKey(autoGenerate = true)
-    val tagId :Long = 0
-}
+    val tagId :Long = 0)
+

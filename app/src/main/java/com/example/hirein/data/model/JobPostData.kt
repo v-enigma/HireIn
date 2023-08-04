@@ -4,9 +4,7 @@ import android.os.Parcelable
 
 data class JobPostData(
     val postId:Long,
-    val postOwnerId : Long,
-    val postOwnerName:String,
-    val postOwnerImage:String?,
+    val postOwnerDetails: PostOwnerDetails,
     val jobTitle : String,
     val Industry :String,
     val minExperience : Int,
@@ -14,7 +12,6 @@ data class JobPostData(
     val employmentType: String,
     val minSalary :Int,
     val maxSalary: Int,
-    val companyId :Long,
     val companyName: String,
     val tags :List<String>,
     val locationType : String,
@@ -23,4 +20,11 @@ data class JobPostData(
     val jobSkills  : List<String>,
     val postedDate: Long,
     val applicationStatus : String
+)
+data class PostOwnerDetails(
+    val postOwnerId : Long,
+    val role : String,
+    val postOwnerFirstName:String,
+    val postOwnerLastName:String,
+    val postOwnerImage:String?,
 )

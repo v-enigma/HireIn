@@ -53,7 +53,7 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.hirein.UI.UserDetailsFragment"
-        android:label="ProfileFragment" >
+         >
         <argument
             android:name="userId"
             app:argType="long" />

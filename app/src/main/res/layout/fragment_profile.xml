@@ -24,13 +24,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/editOption"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/baseline_edit_24"
+            app:layout_constraintBottom_toBottomOf="@id/iv_profilePhoto"
+            app:layout_constraintEnd_toEndOf="@+id/iv_profilePhoto" />
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_profilePhoto"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/baseline_person_24"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/baseline_account_circle_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_jobPostCount"
@@ -52,12 +63,12 @@
             app:layout_constraintStart_toStartOf="@+id/tv_jobsApplied"
             app:layout_constraintTop_toBottomOf="@id/guidelineCenter" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineCenter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.1" />
+       <View
+           android:id="@+id/guidelineCenter"
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@id/iv_profilePhoto"/>
 
         <!-- Post made TextView -->
         <TextView
@@ -90,34 +101,81 @@
 
         <TextView
             android:id="@+id/tv_EducationalDetails"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Education Details"
+            app:layout_constraintEnd_toStartOf="@+id/downArrow"
             app:layout_constraintStart_toStartOf="parent"
+            android:padding="3dp"
             app:layout_constraintTop_toBottomOf="@id/JobPostsMade" />
+
+        <ImageView
+            android:id="@+id/upArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:src="@drawable/baseline_keyboard_arrow_up_24"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_EducationalDetails"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_EducationalDetails" />
+
+        <ImageView
+
+            android:id="@+id/downArrow"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_keyboard_arrow_down_24"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_EducationalDetails"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_EducationalDetails" />
+
 
         <androidx.recyclerview.widget.RecyclerView
 
             app:layout_constraintTop_toBottomOf="@id/tv_EducationalDetails"
             app:layout_constraintStart_toStartOf="parent"
-
+            android:visibility="gone"
             android:id="@+id/rvEducational_Experiences"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
+
             android:id="@+id/tv_professional_Experiences"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:padding="3dp"
             android:text="Professional Details"
+            app:layout_constraintEnd_toStartOf="@+id/professionUpArrow"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rvEducational_Experiences" />
+        <ImageView
+            android:id="@+id/professionUpArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:src="@drawable/baseline_keyboard_arrow_up_24"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_professional_Experiences"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_professional_Experiences" />
 
+        <ImageView
+
+            android:id="@+id/professionDownArrow"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_keyboard_arrow_down_24"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_professional_Experiences"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_professional_Experiences" />
         <androidx.recyclerview.widget.RecyclerView
             app:layout_constraintTop_toBottomOf="@id/tv_professional_Experiences"
             app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/rvProfessional_Expression"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

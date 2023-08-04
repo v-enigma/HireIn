@@ -1,4 +1,4 @@
-package com.example.hirein.data.entity
+package com.example.hirein.data.DB.entity
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
@@ -16,6 +16,8 @@ import androidx.room.PrimaryKey
     ]
 )
 data class EducationalQualification(
+    @PrimaryKey(autoGenerate = true)
+    val instituteId: Long = 0,
     val userId:Long,
     val instituteName:String,
     val degree:String,
@@ -24,6 +26,5 @@ data class EducationalQualification(
     val endDateOrExpectedEndDate: Long,
     val grade: Float,
     val description:String){
-    @PrimaryKey(autoGenerate = true)
-    val instituteId: Long = 0
+
 }

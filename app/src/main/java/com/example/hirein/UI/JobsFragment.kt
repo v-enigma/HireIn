@@ -2,16 +2,14 @@ package com.example.hirein.UI
 
 import android.os.Bundle
 import android.view.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.hirein.Factories.AdapterFactory
+
 import com.example.hirein.R
 import com.example.hirein.data.JobPostViewModel
 import com.example.hirein.data.SharedJobPostData
 import com.example.hirein.data.UserIdViewModel
 import com.example.hirein.data.entity.JobPostAdapter
-import com.example.hirein.data.model.JobPostData
 import com.example.hirein.databinding.FragmentJobsBinding
 
 class JobsFragment: Fragment() {
@@ -24,7 +22,7 @@ class JobsFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentJobsBinding.inflate(layoutInflater,container,false)
         val view = binding.root
       // checking the received arguments

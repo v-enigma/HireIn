@@ -30,7 +30,7 @@ class PostDetailFragment: Fragment() {
         // showing the back button in action bar
         val view = binding.root
         binding.jobPostData = sharedViewModel.jobPostData
-        val directions = PostDetailFragmentDirections.actionPostDetailFragmentToProfileFragment(sharedViewModel.jobPostData.postOwnerId)
+        val directions = PostDetailFragmentDirections.actionPostDetailFragmentToProfileFragment(sharedViewModel.jobPostData.postOwnerDetails.postOwnerId)
         binding.arrowIcon.setOnClickListener{
             println(" Clicked ")
            findNavController().navigate(directions)

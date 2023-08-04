@@ -20,12 +20,11 @@ class ConnectionsFragment:Fragment() {
     private val binding get() =_binding!!
     private lateinit var viewModel: ConnectionsViewModel
     private lateinit var menuProvider:MenuProvider
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
          _binding = FragmentConnectionsBinding.inflate(inflater,container,false)
         viewModel = ViewModelProvider(this).get(ConnectionsViewModel::class.java)
         if(!viewModel.followers.isInitialized)
@@ -37,22 +36,13 @@ class ConnectionsFragment:Fragment() {
                 viewModel.deleteFollower(index)
             }
         }
-        val itemClickListener ={
-            //val directions = ConnectionsFragmentDirections
-            //findNavController().navigate()
-            println("Clicked")
-        }
         val adapter = ConnectionsAdapter(this) { index ->
             val directions =
                 ConnectionsFragmentDirections.actionConnectionsFragmentToBottomSheetFragment(index)
             findNavController().navigate(directions)
             //setMenuVisibility(true)
         }
-
-
-
         //binding.topAppBar.inflateMenu(R.menu.search_menu)
-
         viewModel.followers.observe(viewLifecycleOwner) {
             it?.let { adapter.submitList(it) }
         }
@@ -60,15 +50,12 @@ class ConnectionsFragment:Fragment() {
         setUpSearchFeature()
         return binding.root
     }
-
-
     private fun setUpSearchFeature(){
         menuProvider = object: MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.search_icon,menu)
                 val searchfun  = menu.findItem((R.id.action_search))
                 val searchView :SearchView = searchfun.actionView as SearchView
-
                 // searchView.setIconifiedByDefault(false)
                 searchView.queryHint ="Search Users"
                 searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
@@ -84,7 +71,6 @@ class ConnectionsFragment:Fragment() {
                     }
                 })
             }
-
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 when(menuItem.itemId){
                     R.id.action_search ->return true
@@ -94,7 +80,6 @@ class ConnectionsFragment:Fragment() {
         }
         (requireActivity() as MenuHost).addMenuProvider(menuProvider, viewLifecycleOwner)
     }
-
     override fun onPause(){
         super.onPause()
         println("I am inside the onPause ConnectionsFragment")
@@ -104,10 +89,8 @@ class ConnectionsFragment:Fragment() {
         println("I am deleted in the connections Fragment")
         _binding = null
     }
-
     override fun onResume() {
         super.onResume()
         println("connections Fragment on focus")
     }
-
 }
