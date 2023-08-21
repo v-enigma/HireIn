@@ -1,34 +1,45 @@
-package com.example.hirein.data.DB
+package com.example.hirein.data.db
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import com.example.hirein.data.DB.entity.*
+import androidx.lifecycle.lifecycleScope
+import androidx.room.*
+import com.example.hirein.Convertors
+import com.example.hirein.data.db.entity.*
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 @Database( entities = [Company::class,Address::class, EducationalQualification::class,
-    AppliedJobs::class, JobPost::class, Skills::class, ProfessionalExperience::class, Tag::class, Field:: class,
-    JobRequirement::class,User::class ], version = 1)
+     JobPost::class, Skills::class, ProfessionalExperience::class, Tag::class, Field:: class,
+    JobRequirement::class,User::class, Follower::class, AppliedJobs::class ], version = 1, exportSchema = false)
+@TypeConverters(Convertors::class)
 abstract class JobPortalDatabase : RoomDatabase() {
+        abstract fun addressDao() : AddressDao
+        abstract fun appliedJobsDao(): AppliedJobsDao
+        abstract fun companyDao():CompanyDao
+        abstract fun requirementDao(): RequirementDao
+        abstract fun tagsDao():TagsDao
+        abstract fun skillsDao() : SkillsDao
+        abstract fun educationQualificationDao(): EducationalQualificationDao
+        abstract fun userDao(): UserDao
+        abstract fun registerDao() : RegisterDao
+        abstract fun jobPostDao() : JobPostDao
 
-     abstract val
-    //write abstract functions to  call dao
+        abstract fun followersDao(): FollowersDao
+
+        companion object {
+
 
         @Volatile
-        private lateinit var INSTANCE: JobPortalDatabase
+        private  var INSTANCE: JobPortalDatabase? = null
 
-        fun getDatabase(context: Context): JobPortalDatabase {
-            if (!::INSTANCE.isInitialized) {
-
-              synchronized(this)
-              {
-                  INSTANCE =  Room.databaseBuilder(context.applicationContext, JobPortalDatabase::class.java, "job_portal").build()
-              }
-
+        fun getInstance(context: Context):JobPortalDatabase =
+            INSTANCE?:synchronized(this){
+                println("Creating the database")
+                INSTANCE?: buildDatabase(context).also{ INSTANCE = it}
             }
-            return INSTANCE!!
+        private fun buildDatabase(context: Context):JobPortalDatabase {
+            val instance = Room.databaseBuilder(context.applicationContext, JobPortalDatabase::class.java, "job_portal").build()
+            return instance
         }
-
-
-
+    }
 }

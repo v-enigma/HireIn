@@ -1,10 +1,10 @@
-package com.example.hirein.data.DB.entity
+package com.example.hirein.data.db.entity
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
-@Entity(
+@Entity(tableName = "skills",
     foreignKeys = [
         ForeignKey(
             entity = JobPost::class,
@@ -16,7 +16,7 @@ import androidx.room.PrimaryKey
 )
 data class Skills(
     val jobPostId : Long,
+    val name :String,
     @PrimaryKey(autoGenerate = true)
-    val skillId: Long,
-    val name :String
+    val skillId: Long = 0,
 )

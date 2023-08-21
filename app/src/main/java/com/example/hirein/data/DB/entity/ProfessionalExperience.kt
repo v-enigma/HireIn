@@ -1,11 +1,12 @@
-package com.example.hirein.data.DB.entity
+package com.example.hirein.data.db.entity
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import java.util.*
 
 
-@Entity(
+@Entity(tableName = "professionalExperience",
     foreignKeys = [
         ForeignKey(
             entity = User::class,
@@ -23,12 +24,13 @@ import androidx.room.PrimaryKey
 )
 data class ProfessionalExperience(
     val userId:Long,
-    val title:String,
+    val role :String,
     val employmentType:String,
     val companyId: Long,
     val locationId:Long,
-    val startDate :Long,
-    val endDate : Long) {
+    val startDate : Date,
+    val endDate : Date?,
+    val currentlyWorking :Boolean) {
     @PrimaryKey(autoGenerate = true)
     var rowId : Long = 0
 }

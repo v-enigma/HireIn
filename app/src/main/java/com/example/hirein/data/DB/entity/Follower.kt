@@ -1,9 +1,9 @@
-package com.example.hirein.data.DB.entity
+package com.example.hirein.data.db.entity
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
 
-@Entity(tableName = "followers",
+@Entity(tableName = "follower",
     primaryKeys = ["userId", "followerId"],
     foreignKeys = [
         ForeignKey(

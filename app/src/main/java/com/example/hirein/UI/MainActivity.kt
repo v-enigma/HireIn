@@ -41,8 +41,6 @@ class MainActivity : AppCompatActivity() {
         bundle.putLong("userId", userId)
         navHost.navController.setGraph(R.navigation.mobile_navigation, bundle)
         setupActionBar(binding.topAppBar)
-
-
     }
 
 

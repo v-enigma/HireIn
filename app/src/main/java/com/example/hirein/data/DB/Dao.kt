@@ -1,8 +1,10 @@
-package com.example.hirein.data.entity
+package com.example.hirein.data.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.hirein.data.DB.entity.*
-import com.example.hirein.data.model.JobPostData
+import com.example.hirein.data.db.entity.*
+import com.example.hirein.data.model.PostOwnerDetails
+import java.util.*
 
 @Dao
 interface CompanyDao {
@@ -13,79 +15,135 @@ interface CompanyDao {
     fun updateCompany(company: Company)
 
     @Query("SELECT * FROM company")
-    fun getAllCompanies(): List<Company>
+    suspend fun getAllCompanies(): List<Company>
 
     @Query("SELECT * FROM company WHERE companyId = :companyId")
-    fun getCompanyById(companyId: Long): Company
-
+    suspend fun getCompanyById(companyId: Long): Company
 
 }
 @Dao
-interface UserDao {
+interface RegisterDao{
     @Insert
-    fun insertUser(user: User)
+    fun insertUser(user:User)
+
+    @Query("SELECT user.userId FROM user WHERE (user.mobileNo = :phoneOrEmail AND user.password = :password) || (user.emailId = :phoneOrEmail AND user.password = :password)")
+    suspend fun authenticateUser(phoneOrEmail: String, password:String): Long?
+    @Query("SELECT COUNT(*) FROM  user WHERE user.mobileNo = :phone")
+    suspend fun isPhoneNumberExist(phone:String):Int
+    @Query("SELECT COUNT(*) FROM user WHERE user.emailId =:email")
+    suspend fun isEmailIdExist(email:String):Int
+    @Query("SELECT COUNT(*) FROM User ")
+    suspend fun countRecords():Int
+    @Query("SELECT user.userId FROM user WHERE (user.mobileNo = :phoneOrEmail) || (user.emailId = :phoneOrEmail)")
+    suspend fun getUserId(phoneOrEmail: String):Long
+}
+@Dao
+interface UserDao {
+
 
     @Update
-    fun updateUser(user: User)
+    suspend fun updateUser(user: User)
 
     @Query("SELECT * FROM user")
-    fun getAllUsers(): List<User>
+    suspend fun getAllUsers(): List<User>
 
     @Query("SELECT * FROM user WHERE userId = :userId")
-    fun getUserById(userId: Long): User
-    @Query("SELECT followerId, FROM Follower  where Follower.userId = :userId ")
-    fun getConnections(userId: Long) :List<Long>
-    @Query("DELETE FROM Follower where Follower.followerId = :followerId AND Follower.userId = userId ")
-    fun removeConnections(follwerId:Long, userId: Long)
+    suspend fun getUserById(userId: Long): User
+
+    @Query("SELECT user.userId, professionalExperience.role , user.firstName ,user.LastName,user.profilePhoto " +
+            "FROM user" +
+            " INNER JOIN professionalExperience ON user.userId = :userId " +
+            "where (currentlyWorking = true AND  professionalExperience.startDate <= :postedDate  )" +
+            " OR " +
+            "(professionalExperience.startDate <= :postedDate AND professionalExperience.endDate>=:postedDate) ")
+    suspend fun getPostOwner(userId:Long, postedDate: Long ): PostOwnerDetails
+}
+
+@Dao
+interface FollowersDao{
+    @Query("SELECT followerId FROM follower WHERE (follower.userId =:userId)")
+    fun getConnections(userId: Long):LiveData<List<Long>>
+    @Query("DELETE FROM follower where follower.followerId = :followerId AND Follower.userId = :userId ")
+    suspend fun removeConnections(followerId:Long, userId: Long)
+    @Insert
+    suspend fun addConnection(follower: Follower)
 }
 @Dao
 interface EducationalQualificationDao {
     @Insert
-    fun insertEducationalQualification(qualification: EducationalQualification)
+    suspend fun insertProfessionalQualification(professionalExperience: ProfessionalExperience)
+    @Insert
+    suspend fun insertEducationalQualification(qualification: EducationalQualification)
 
     @Update
-    fun updateEducationalQualification(qualification: EducationalQualification)
+    suspend fun updateEducationalQualification(qualification: EducationalQualification)
 
-    @Query("SELECT * FROM educational_qualifications WHERE userId = :userId")
-    fun getEducationalQualificationsForUser(userId: Long): List<EducationalQualification>
+    @Query("SELECT * FROM educationalQualification WHERE userId = :userId")
+    fun getEducationalQualificationsForUser(userId: Long): LiveData<List<EducationalQualification>>
 }
 @Dao
 interface JobPostDao {
     @Insert
-    fun insertJobPost(jobPost: JobPost)
+    suspend fun insertJobPost(jobPost: JobPost)
 
     @Update
-    fun updateJobPost(jobPost: JobPost)
+    suspend fun updateJobPost(jobPost: JobPost)
 
     @Delete
-    fun deleteJobPost(jobPost: JobPost)
+    suspend fun deleteJobPost(jobPost: JobPost)
 
-    @Query("SELECT * FROM JobPost WHERE JobPost.postOwnerId =:postOwnerId")
-    fun getJobPostFeed(postOwnerId:Long): List<JobPost>
+    @Query("SELECT * FROM JobPost WHERE jobPost.postOwnerId =:postOwnerId")
+       fun getJobPostFeed(postOwnerId:Long): LiveData<List<JobPost>>
 }
+@Dao
+interface RequirementDao{
+    @Insert
+    suspend fun insertRequirement(jobRequirement: JobRequirement)
+
+    @Query("SELECT requirement FROM jobRequirement WHERE JobRequirement.jobPostId = :jobPostId")
+     suspend fun getRequirement(jobPostId: Long): List<String>
+
+}
+@Dao
 interface TagsDao{
-    @Query("SELECT * FROM Tag WHERE Tag.jobPostId = :postId" )
-    fun getTagsOfAJobPost(postId:Long):List<String>
+    @Query("SELECT tag FROM tag WHERE Tag.jobPostId = :postId" )
+    suspend fun getTagsOfAJobPost(postId:Long): List<String>
 }
+@Dao
 interface SkillsDao{
-    @Query("SELECT name FROM Skills WHERE Skills.jobPostId =:jobPostId ")
-    fun getSkills(jobPostId:Long):List<String>
+    @Insert
+    suspend fun insertSkills(skills: Skills)
+    @Query("SELECT name FROM skills WHERE Skills.jobPostId =:jobPostId ")
+    suspend fun getSkills(jobPostId:Long): List<String>
 }
 
+@Dao
 interface AddressDao {
     @Insert
-    fun insertAddress(address: Address)
+    suspend fun insertAddress(address: Address)
 
     @Update
-    fun updateAddress(address: Address)
+    suspend fun updateAddress(address: Address)
 
     @Delete
-    fun deleteAddress(address: Address)
-    @Query("SELECT * FROM Company where company.name LIKE '%'||:companyName || '%'")
-    fun getCompanyId(companyName:String):List<Long>
+    suspend fun deleteAddress(address: Address)
+    @Query("SELECT companyId FROM company where company.name LIKE '%'||:companyName || '%'")
+    fun getCompanyId(companyName:String):LiveData<List<Long>>
 
     @Query("SELECT * FROM address WHERE companyId = :companyId")
-    fun getAddressesForCompany(): List<Address>
+    suspend fun getAddressesForCompany(companyId:Long): List<Address>
+}
+@Dao
+interface AppliedJobsDao{
+    @Query("SELECT jobPostId FROM appliedJobs WHERE userId = :userId  ")
+     fun getAppliedJobs(userId: Long): LiveData<List<Long>>
+
+    @Query("SELECT  userId FROM  appliedJobs WHERE userId = :userId AND jobPostId = :jobPostId ")
+    suspend fun isApplied(userId: Long, jobPostId :Long): Long?
+
+    @Insert
+    suspend fun applyToJob(appliedJobs: AppliedJobs)
+
 
 }
 

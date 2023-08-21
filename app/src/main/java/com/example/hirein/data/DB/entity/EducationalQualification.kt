@@ -1,11 +1,12 @@
-package com.example.hirein.data.DB.entity
+package com.example.hirein.data.db.entity
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import java.util.*
 
 
-@Entity(
+@Entity(tableName = "educationalQualification",
     foreignKeys = [
         ForeignKey (
                 entity = User::class,
@@ -22,9 +23,8 @@ data class EducationalQualification(
     val instituteName:String,
     val degree:String,
     val specialization:String,
-    val startDate: Long,
-    val endDateOrExpectedEndDate: Long,
+    val startDate: Date,
+    val studyingNow : Boolean,
+    val endDateOrExpectedEndDate: Date?,
     val grade: Float,
-    val description:String){
-
-}
+    val description:String)

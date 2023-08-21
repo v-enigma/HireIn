@@ -48,7 +48,8 @@
                 android:id="@+id/salary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/salary"
+                app:minSalary="@{jobPostData.minSalary}"
+                app:maxSalary="@{jobPostData.maxSalary}"
                 android:paddingEnd="15dp"
                 android:paddingTop="15dp"
                 app:layout_constraintRight_toRightOf="parent"
@@ -70,7 +71,7 @@
                 android:id="@+id/location"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:text="@string/location"
+                android:text="@{jobPostData.locationType.equals(`Remote`) ? jobPostData.locationType : jobPostData.workLocation  }"
                 android:paddingEnd="3dp"
                 app:layout_constraintTop_toBottomOf="@id/jobTitle"
                 app:layout_constraintLeft_toRightOf="@id/locationIcon"
@@ -89,7 +90,7 @@
                 android:id="@+id/experience"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/experience"
+                android:text="@{jobPostData.minExperience +` - ` + jobPostData.maxExperience +` Years`}"
                 android:paddingEnd="3dp"
                 app:layout_constraintTop_toBottomOf="@id/jobTitle"
                 app:layout_constraintStart_toEndOf="@id/experienceIcon" />
@@ -133,20 +134,20 @@
 <!--              app:layout_constraintTop_toBottomOf="@id/seperator">-->
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profilePhoto"
-                android:layout_width="40dp"
-                android:layout_height="0dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@drawable/baseline_account_circle_24"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="15dp"
                 app:layout_constraintTop_toTopOf="@id/personName"
-                app:layout_constraintBottom_toBottomOf="@id/roleDetails"
+
                  />
 
             <TextView
                 android:id="@+id/personName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{jobPostData.postOwnerDetails.postOwnerFirstName +` `+ jobPostData.postOwnerDetails.postOwnerLastName }"
+                android:text="@{jobPostData.postOwnerDetails.firstName +` `+ jobPostData.postOwnerDetails.lastName }"
                 app:layout_constraintStart_toEndOf="@id/profilePhoto"
                 app:layout_constraintTop_toBottomOf="@id/seperator" />
 
@@ -180,12 +181,12 @@
                 android:paddingStart="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/roleDetails" />
+                app:layout_constraintTop_toBottomOf="@id/profilePhoto" />
             <TextView
                 android:id="@+id/jobDescriptionTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/job_description"
+                android:text="Job Requirements"
                 android:textStyle="bold"
                 android:paddingStart="15dp"
                 android:paddingTop="15dp"
@@ -200,51 +201,82 @@
                 android:layout_marginTop="8dp"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
-                android:text="@string/jobDescription"
-                app:layout_constraintTop_toBottomOf="@id/jobDescriptionTitle" />
+                app:requirements="@{jobPostData.jobRequirements}"
+                app:layout_constraintTop_toBottomOf="@id/jobDescriptionTitle"
+                />
+            <TextView
+                android:id="@+id/skillsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Skills "
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/jobDescription"
+
+                />
+            <TextView
+                android:id="@+id/skills"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:skills="@{jobPostData.jobSkills}"
+                android:layout_marginTop="8dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                app:layout_constraintTop_toBottomOf="@id/skillsTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
             <View
+
                 android:id="@+id/seperator2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginTop="3dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@color/lightGrey"
-                app:layout_constraintTop_toBottomOf="@id/jobDescription"
+
+                app:layout_constraintTop_toBottomOf="@id/skills"
                />
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/CompanyImage"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_alignParentStart="true"
+                android:layout_margin="7dp"
                 android:contentDescription="Company Icon"
+
                 android:src="@drawable/baseline_account_circle_24"
-                android:layout_marginStart="15dp"
+                app:layout_constraintTop_toBottomOf="@id/seperator2"
 
-
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/CompanyName"
-                app:layout_constraintBottom_toBottomOf="@id/CompanyDetails"/>
+                app:layout_constraintStart_toStartOf="parent" />
             <TextView
                 android:id="@+id/CompanyName"
                 app:layout_constraintLeft_toRightOf="@id/CompanyImage"
                 app:layout_constraintTop_toBottomOf="@id/seperator2"
+                app:layout_constraintBottom_toTopOf="@id/CompanyDetails"
                 android:layout_width="wrap_content"
                 android:layout_marginStart="15dp"
-                android:text="@{jobPostData.companyName}"
+                android:text="@{jobPostData.company.name}"
                 android:layout_height="wrap_content"/>
+
             <TextView
                 android:id="@+id/CompanyDetails"
-                android:text="Company Details"
-                android:layout_marginStart="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/CompanyName"
-                app:layout_constraintLeft_toRightOf="@id/CompanyImage"/>
+                app:companyDetails="@{jobPostData.company}"
+                app:layout_constraintBottom_toBottomOf="@+id/CompanyImage"
+                app:layout_constraintLeft_toRightOf="@id/CompanyImage"
+                app:layout_constraintTop_toBottomOf="@id/CompanyName" />
 
             <View
                 android:layout_marginTop="5dp"
                 android:id="@+id/seperator3"
-                app:layout_constraintTop_toBottomOf="@id/CompanyDetails"
+                app:layout_constraintTop_toBottomOf="@id/CompanyImage"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@color/lightGrey"
@@ -252,7 +284,7 @@
                 android:layout_height="1dp"/>
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btnApply"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"

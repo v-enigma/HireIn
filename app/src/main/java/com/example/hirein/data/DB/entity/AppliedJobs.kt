@@ -1,10 +1,9 @@
-package com.example.hirein.data.DB.entity
+package com.example.hirein.data.db.entity
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
 
-@Entity(
+@Entity(tableName = "appliedJobs",
     primaryKeys = ["userId", "jobPostId"],
     foreignKeys = [
         ForeignKey(

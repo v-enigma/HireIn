@@ -1,10 +1,10 @@
-package com.example.hirein.data.DB.entity
+package com.example.hirein.data.db.entity
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
-@Entity(
+@Entity(tableName = "address",
      foreignKeys = [
           ForeignKey(
                entity = Company::class,
@@ -23,8 +23,5 @@ data class Address(
      val district:String,
      val state: String,
      val country :String,
-     val pincode :Int,
+     val pinCode :Int,
      val companyId: Long)
-{
-
-}

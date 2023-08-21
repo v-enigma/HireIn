@@ -1,4 +1,4 @@
-package com.example.hirein.data.DB.entity
+package com.example.hirein.data.db.entity
 
 enum class EmploymentType {
     CONTRACT,

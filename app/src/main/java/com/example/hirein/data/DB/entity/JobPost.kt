@@ -1,11 +1,11 @@
-package com.example.hirein.data.DB.entity
+package com.example.hirein.data.db.entity
 
-import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import java.util.*
 
-@Entity(
+@Entity(tableName = "jobPost",
     foreignKeys = [
         ForeignKey(
            entity = User::class,
@@ -25,6 +25,7 @@ data class JobPost(
     @PrimaryKey(autoGenerate = true)
     val jobPostId: Long = 0,
     val postOwnerId : Long,
+    val postOwnerRole: String,
     val jobTitle : String,
     val Industry :String,
     val minExperience : Int,
@@ -35,7 +36,6 @@ data class JobPost(
     val companyId :Long,
     val locationType : String,
     val workLocation : String?,
-
-    val postedDate: Long,
+    val postedDate: Date,
     val applicationStatus : String
 )
