@@ -26,7 +26,7 @@ interface RegisterDao{
     @Insert
     fun insertUser(user:User)
 
-    @Query("SELECT user.userId FROM user WHERE (user.mobileNo = :phoneOrEmail AND user.password = :password) || (user.emailId = :phoneOrEmail AND user.password = :password)")
+    @Query("SELECT user.userId FROM user WHERE (user.mobileNo = :phoneOrEmail AND user.password = :password ) || (user.emailId = :phoneOrEmail AND user.password = :password)")
     suspend fun authenticateUser(phoneOrEmail: String, password:String): Long?
     @Query("SELECT COUNT(*) FROM  user WHERE user.mobileNo = :phone")
     suspend fun isPhoneNumberExist(phone:String):Int
@@ -39,18 +39,16 @@ interface RegisterDao{
 }
 @Dao
 interface UserDao {
-
-
     @Update
     suspend fun updateUser(user: User)
 
-    @Query("SELECT * FROM user")
+    @Query("SELECT * FROM user ")
     suspend fun getAllUsers(): List<User>
 
     @Query("SELECT * FROM user WHERE userId = :userId")
     suspend fun getUserById(userId: Long): User
 
-    @Query("SELECT user.userId, professionalExperience.role , user.firstName ,user.LastName,user.profilePhoto " +
+    @Query("SELECT user.userId, professionalExperience.role , user.firstName ,user.lastName,user.profilePhoto " +
             "FROM user" +
             " INNER JOIN professionalExperience ON user.userId = :userId " +
             "where (currentlyWorking = true AND  professionalExperience.startDate <= :postedDate  )" +
@@ -61,12 +59,24 @@ interface UserDao {
 
 @Dao
 interface FollowersDao{
+
+    @Query(" SELECT user.userId, user.firstName, user.lastName, user.profilePhoto FROM user INNER JOIN "+
+            "( SELECT followerId  FROM follower WHERE userId =:userId) as userFollowers  on userFollowers.followerId = user.userId ")
+    fun getConnectionsWithDetails(userId: Long) :LiveData<List<ConnectionDetails>>
     @Query("SELECT followerId FROM follower WHERE (follower.userId =:userId)")
-    fun getConnections(userId: Long):LiveData<List<Long>>
+     fun getConnections(userId: Long):LiveData<List<Long>>
+
     @Query("DELETE FROM follower where follower.followerId = :followerId AND Follower.userId = :userId ")
     suspend fun removeConnections(followerId:Long, userId: Long)
     @Insert
     suspend fun addConnection(follower: Follower)
+}
+
+@Dao
+interface ProfessionalExperienceDao{
+
+    @Query("SELECT name, role FROM company INNER JOIN ( SELECT companyId, role FROM professionalExperience WHERE userId = :userId ORDER BY startDate DESC LIMIT 1 ) as pDetails on company.companyId = pDetails.companyId")
+    fun getLatestProfessionalExperience(userId:Long):LiveData<ConnectionProfessionalDetails>
 }
 @Dao
 interface EducationalQualificationDao {

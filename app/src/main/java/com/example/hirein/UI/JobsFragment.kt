@@ -53,10 +53,8 @@ class JobsFragment: Fragment() {
                   adapter = JobPostAdapter(this@JobsFragment, viewModel.jobsFeed)
                   binding.jobPosts.adapter = adapter
 
-                  println()
-                  println("kapt binding")
               }
-              println("kapt")
+
             }
             //sharedViewModel = ViewModelProvider(requireActivity(),SharedJobPostViewModelFactory(repository,userId)).get(SharedJobPostData::class.java)
 
@@ -83,7 +81,7 @@ class JobsFragment: Fragment() {
     override fun onResume() {
         super.onResume()
        requireActivity().title = "HireIn"
-       if(paused && viewModel.jobsFeed!= localJobsFeed){
+       if(paused && viewModel.jobsFeed.size != localJobsFeed.size){
            println("INNNNN")
           adapter.updateData(viewModel.jobsFeed)
        }

@@ -25,9 +25,7 @@ class BottomSheetFragment: BottomSheetDialogFragment() {
         println("$index i accessed the Index")
 
         val view = inflater.inflate(R.layout.bottom_sheet_layout, container,false)
-        val bundle = Bundle().apply {
-            putInt("Index", index)
-        }
+
 
         view.findViewById<LinearLayout>(R.id.unfollow).setOnClickListener {
             println("Clicked")

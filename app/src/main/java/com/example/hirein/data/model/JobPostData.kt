@@ -30,3 +30,4 @@ data class PostOwnerDetails(
     val lastName:String,
     val profilePhoto:String?,
 )
+

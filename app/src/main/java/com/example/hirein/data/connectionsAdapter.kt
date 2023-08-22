@@ -29,7 +29,7 @@ class ConnectionsAdapter(val fragment: Fragment, val onOptionsClicked: (Int)-> U
              }
          }
         fun bind(item: ConnectionInformation){
-        binding.connection = item
+            binding.connection = item
         }
     }
 

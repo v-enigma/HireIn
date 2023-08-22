@@ -24,6 +24,8 @@ abstract class JobPortalDatabase : RoomDatabase() {
         abstract fun registerDao() : RegisterDao
         abstract fun jobPostDao() : JobPostDao
 
+        abstract fun professionalExperienceDao() :ProfessionalExperienceDao
+
         abstract fun followersDao(): FollowersDao
 
         companion object {
