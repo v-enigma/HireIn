@@ -7,6 +7,6 @@ data class ConnectionDetails(
     val profilePhoto: String?,
 )
 data class ConnectionProfessionalDetails(
-    val name:String,
+    val companyName:String,
     val role :String
 )

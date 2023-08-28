@@ -1,17 +1,20 @@
-package com.example.hirein.data.entity
+package com.example.hirein.data
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hirein.UI.JobsFragmentDirections
+import com.example.hirein.data.JobFeedDiffItemCallBack
 import com.example.hirein.data.model.JobPostData
 import com.example.hirein.databinding.PostViewBinding
 
-class JobPostAdapter(val fragment: Fragment, posts : List<JobPostData> ): RecyclerView.Adapter<JobPostAdapter.JobPostViewHolder>() {
+class JobPostAdapter(val fragment: Fragment): ListAdapter<JobPostData,JobPostAdapter.JobPostViewHolder>(
+    JobFeedDiffItemCallBack()
+) {
 
-    var jobsFeed = posts
     private lateinit var binding: PostViewBinding
     class JobPostViewHolder(
         private val binding :PostViewBinding ):RecyclerView.ViewHolder(binding.root){
@@ -25,12 +28,8 @@ class JobPostAdapter(val fragment: Fragment, posts : List<JobPostData> ): Recycl
         return JobPostViewHolder(binding)
     }
 
-    override fun getItemCount(): Int {
-        return jobsFeed?.size ?: 0
-    }
-
     override fun onBindViewHolder(holder: JobPostViewHolder, position: Int) {
-        val item = jobsFeed[position]
+        val item = getItem(position)
         item.let{holder.bind(it)}
         holder.itemView.setOnClickListener {
             item.let{
@@ -39,13 +38,7 @@ class JobPostAdapter(val fragment: Fragment, posts : List<JobPostData> ): Recycl
                 val direction = JobsFragmentDirections.actionHomeFragmentToPostDetailFragment(position)
                 findNavController(fragment).navigate(direction)
             }
-
         }
-
     }
-    fun updateData(updatedJobsFeed:List<JobPostData>){
-        jobsFeed = updatedJobsFeed
-        //notifyDataSetChanged()
 
-    }
 }

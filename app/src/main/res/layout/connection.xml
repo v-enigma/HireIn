@@ -10,7 +10,6 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:paddingTop="16dp">
@@ -52,7 +51,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="5dp"
-            android:text="@{connection.roleName+` @ `+ connection.companyName}"
+            app:role ="@{connection.roleName}"
+            app:companyName="@{connection.companyName}"
             app:layout_constraintBottom_toBottomOf="@+id/profilePhoto"
             app:layout_constraintLeft_toRightOf="@id/profilePhoto" />
 
@@ -75,5 +75,6 @@
             app:layout_constraintTop_toTopOf="parent"
             android:visibility="gone"
             />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

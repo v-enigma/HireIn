@@ -47,9 +47,9 @@ class PostDetailFragment: Fragment() {
         val view = binding.root
         val index = args.index
         if(index >= 0) {
-            binding.jobPostData = sharedViewModel.jobsFeed[index]
+            binding.jobPostData = sharedViewModel.jobsFeed.value?.get(index) ?: throw NoSuchElementException()
             val directions = PostDetailFragmentDirections.actionPostDetailFragmentToProfileFragment(
-                sharedViewModel.jobsFeed[index].postOwnerDetails.userId
+                sharedViewModel.jobsFeed.value?.get(index)!!.postOwnerDetails.userId
             )
             binding.arrowIcon.setOnClickListener {
                 println(" Clicked ")
@@ -60,7 +60,8 @@ class PostDetailFragment: Fragment() {
              it.isEnabled = false
              binding.btnApply.text = "APPLIED"
              binding.btnApply.setBackgroundColor(resources.getColor(R.color.grey))
-            sharedViewModel.applyToJob(userId, sharedViewModel.jobsFeed[index].postId,index )
+            val postId = sharedViewModel.jobsFeed.value?.get(index)?.postId ?: -1
+            sharedViewModel.applyToJob(userId,postId ,index )
         }
         /*//binding.topAppBar.setNavigationIcon(R.drawable.baseline_arrow_back_24)
         //binding.topAppBar.setNavigationOnClickListener{
@@ -84,7 +85,6 @@ class PostDetailFragment: Fragment() {
                 || super.onOptionsItemSelected(item)
     }
 */
-
 
     override fun onDestroy() {
         _binding = null

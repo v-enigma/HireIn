@@ -1,7 +1,9 @@
 package com.example.hirein.data.model
 
 import android.os.Parcelable
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.hirein.data.ConnectionInformation
 import com.example.hirein.data.db.entity.Company
 
 data class JobPostData(
@@ -29,5 +31,9 @@ data class PostOwnerDetails(
     val firstName:String,
     val lastName:String,
     val profilePhoto:String?,
+)
+data class SearchResults(
+    val name:String,
+    val results: MutableList<ConnectionInformation>
 )
 

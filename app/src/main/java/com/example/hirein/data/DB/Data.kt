@@ -64,9 +64,11 @@ suspend fun populateProfessionalExperience(database: JobPortalDatabase){
         ProfessionalExperience(3,"Member Technical Staff","Full Time",1,1,Date(2022,11,23),null, true),
         ProfessionalExperience(3,"Assistant Engineer","Full Time",2,1,Date(2021,4,8),Date(2022,5,8), false),
         ProfessionalExperience(3,"Project Trainee","InternShip",3,1,Date(2018,11,21),Date(2019,5,12), false),
-    )
+        ProfessionalExperience(5,"Member Technical Staff","Full Time",1,1,Date(2022,11,23),null, true),
+
+        )
     professionalExperiences.forEach{
-        database.educationQualificationDao().insertProfessionalQualification(it)
+        database.professionalExperienceDao().insertProfessionalQualification(it)
     }
 
 }

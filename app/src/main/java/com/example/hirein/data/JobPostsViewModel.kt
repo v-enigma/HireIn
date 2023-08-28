@@ -12,19 +12,20 @@ import kotlinx.coroutines.*
 class JobPostsViewModel(
 
     private val repository: JobPostRepository,
-
     val userId: Long
 ) : ViewModel() {
     //var isEnabled = true
      var index = -1
-
-    lateinit var jobsFeed: MutableList<JobPostData>
-
-    fun initializeJobsFeed(bindingAdapter: () ->Unit) {
+    private var _jobsFeed = MutableLiveData<MutableList<JobPostData>>()
+    val jobsFeed :LiveData<MutableList<JobPostData>> = _jobsFeed
+    fun initializeJobsFeed() {
+        //println("I am  entering Intialization PPP")
         viewModelScope.launch {
+            println("I am coroutine PPP")
             withContext(Dispatchers.IO) {
-                jobsFeed = repository.getJobPosts(userId)
-                bindingAdapter()
+                val jobFeed =  repository.getJobPosts(userId)
+                _jobsFeed.postValue (jobFeed)
+
             }
         }
     }
@@ -32,7 +33,7 @@ class JobPostsViewModel(
         viewModelScope.launch {
             withContext(Dispatchers.IO){
                 repository.applyToJob(userId,jobPostId)
-                jobsFeed.removeAt(position)
+                jobsFeed.value?.removeAt(position)
 
             }
         }

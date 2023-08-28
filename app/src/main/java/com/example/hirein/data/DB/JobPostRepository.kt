@@ -29,47 +29,50 @@ class JobPostRepository(
         val followers = followersDao.getConnections(userId).asFlow().first()
         followers.forEach { followerId ->
             val jobPosts = jobPostDao.getJobPostFeed(followerId).asFlow().first()
-
-            jobPosts.forEach {
-                if (!appliedJobs.contains(it.jobPostId)) {
-                    val company: Company =
-                        when {
-                            (companyReferences.containsKey(it.companyId)) -> companyReferences.getValue(
-                                it.companyId
-                            )
-                            else -> {
-                                val temp = companyDao.getCompanyById(it.companyId)
-                                companyReferences[temp.companyId] = temp
-                                temp
+            if(jobPosts.isNotEmpty()) {
+                println(jobPosts)
+                jobPosts.forEach {
+                    if (!appliedJobs.contains(it.jobPostId)) {
+                        val company: Company =
+                            when {
+                                (companyReferences.containsKey(it.companyId)) -> companyReferences.getValue(
+                                    it.companyId
+                                )
+                                else -> {
+                                    val temp = companyDao.getCompanyById(it.companyId)
+                                    companyReferences[temp.companyId] = temp
+                                    temp
+                                }
                             }
+                        val tags = tagsDao.getTagsOfAJobPost(it.jobPostId)
+                        val requirements = requirementDao.getRequirement(it.jobPostId)
+                        val skills = skillsDao.getSkills(it.jobPostId)
+                        val postOwnerDetails =
+                            userDao.getPostOwner(it.postOwnerId, it.postedDate.time)
+                        println("------------------- $tags $requirements $skills $postOwnerDetails ________________")
+                        appliedJobsDao.isApplied(userId, it.jobPostId) ?: run {
+                            val jobPost = JobPostData(
+                                it.jobPostId,
+                                postOwnerDetails,
+                                it.jobTitle,
+                                it.Industry,
+                                it.minExperience,
+                                it.maxExperience,
+                                it.employmentType,
+                                it.minSalary,
+                                it.maxSalary,
+                                company,
+                                tags,
+                                it.locationType,
+                                it.workLocation,
+                                requirements,
+                                skills,
+                                it.postedDate.time,
+                                it.applicationStatus
+                            )
+                            //println(jobPost)
+                            jobsFeed.add(jobPost)
                         }
-                    val tags = tagsDao.getTagsOfAJobPost(it.jobPostId)
-                    val requirements = requirementDao.getRequirement(it.jobPostId)
-                    val skills = skillsDao.getSkills(it.jobPostId)
-                    val postOwnerDetails = userDao.getPostOwner(it.postOwnerId, it.postedDate.time)
-                    //println("------------------- $tags $requirements $skills $postOwnerDetails ________________")
-                    appliedJobsDao.isApplied(userId, it.jobPostId) ?: run {
-                        val jobPost = JobPostData(
-                            it.jobPostId,
-                            postOwnerDetails,
-                            it.jobTitle,
-                            it.Industry,
-                            it.minExperience,
-                            it.maxExperience,
-                            it.employmentType,
-                            it.minSalary,
-                            it.maxSalary,
-                            company,
-                            tags,
-                            it.locationType,
-                            it.workLocation,
-                            requirements,
-                            skills,
-                            it.postedDate.time,
-                            it.applicationStatus
-                        )
-                        println(jobPost)
-                        jobsFeed.add(jobPost)
                     }
                 }
             }

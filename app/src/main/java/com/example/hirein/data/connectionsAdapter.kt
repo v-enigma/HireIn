@@ -22,8 +22,7 @@ class ConnectionsAdapter(val fragment: Fragment, val onOptionsClicked: (Int)-> U
 
          companion object {
              fun inflateFrom(parent: ViewGroup):ConnectionViewHolder{
-                 val layoutInflater = LayoutInflater.from(parent.context)
-                 val binding = ConnectionBinding.inflate(layoutInflater,parent,false)
+                 val binding = ConnectionBinding.inflate(LayoutInflater.from(parent.context),parent,false)
                  //val view = layoutInflater.inflate(R.layout.connection,parent,false) as ConstraintLayout
                  return ConnectionViewHolder(binding)
              }

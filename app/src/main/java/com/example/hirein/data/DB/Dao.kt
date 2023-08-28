@@ -42,19 +42,20 @@ interface UserDao {
     @Update
     suspend fun updateUser(user: User)
 
-    @Query("SELECT * FROM user ")
-    suspend fun getAllUsers(): List<User>
+    @Query("SELECT * FROM user WHERE firstName LIKE '%'||:searchQuery||'%' or :searchQuery LIKE '%'||firstName|| '% 'or lastName LIKE '%'||:searchQuery|| '%' ")
+    fun searchUserByName(searchQuery: String): LiveData<List<User>>
 
     @Query("SELECT * FROM user WHERE userId = :userId")
     suspend fun getUserById(userId: Long): User
 
     @Query("SELECT user.userId, professionalExperience.role , user.firstName ,user.lastName,user.profilePhoto " +
             "FROM user" +
-            " INNER JOIN professionalExperience ON user.userId = :userId " +
-            "where (currentlyWorking = true AND  professionalExperience.startDate <= :postedDate  )" +
+            " INNER JOIN professionalExperience ON (user.userId = professionalExperience.userId )"  +
+            "WHERE user.userId =:userId AND ((currentlyWorking = 1 AND  professionalExperience.startDate <= :postedDate  )" +
             " OR " +
-            "(professionalExperience.startDate <= :postedDate AND professionalExperience.endDate>=:postedDate) ")
+            "(professionalExperience.startDate <= :postedDate AND professionalExperience.endDate>=:postedDate)) ")
     suspend fun getPostOwner(userId:Long, postedDate: Long ): PostOwnerDetails
+
 }
 
 @Dao
@@ -65,23 +66,25 @@ interface FollowersDao{
     fun getConnectionsWithDetails(userId: Long) :LiveData<List<ConnectionDetails>>
     @Query("SELECT followerId FROM follower WHERE (follower.userId =:userId)")
      fun getConnections(userId: Long):LiveData<List<Long>>
-
-    @Query("DELETE FROM follower where follower.followerId = :followerId AND Follower.userId = :userId ")
+    @Query("DELETE FROM follower where follower.followerId = :followerId AND follower.userId = :userId ")
     suspend fun removeConnections(followerId:Long, userId: Long)
     @Insert
     suspend fun addConnection(follower: Follower)
+
+    @Query("SELECT followerId FROM follower  where follower.followerId = :followerId and follower.userId = :userId")
+    suspend fun isFollower(userId:Long, followerId: Long):Long?
 }
 
 @Dao
 interface ProfessionalExperienceDao{
-
-    @Query("SELECT name, role FROM company INNER JOIN ( SELECT companyId, role FROM professionalExperience WHERE userId = :userId ORDER BY startDate DESC LIMIT 1 ) as pDetails on company.companyId = pDetails.companyId")
+    @Insert
+    suspend fun insertProfessionalQualification(professionalExperience: ProfessionalExperience)
+    @Query("SELECT name as companyName, role FROM company INNER JOIN ( SELECT companyId, role FROM professionalExperience WHERE userId = :userId ORDER BY startDate DESC LIMIT 1 ) as pDetails on company.companyId = pDetails.companyId")
     fun getLatestProfessionalExperience(userId:Long):LiveData<ConnectionProfessionalDetails>
 }
 @Dao
 interface EducationalQualificationDao {
-    @Insert
-    suspend fun insertProfessionalQualification(professionalExperience: ProfessionalExperience)
+
     @Insert
     suspend fun insertEducationalQualification(qualification: EducationalQualification)
 
@@ -103,7 +106,7 @@ interface JobPostDao {
     suspend fun deleteJobPost(jobPost: JobPost)
 
     @Query("SELECT * FROM JobPost WHERE jobPost.postOwnerId =:postOwnerId")
-       fun getJobPostFeed(postOwnerId:Long): LiveData<List<JobPost>>
+    fun getJobPostFeed(postOwnerId:Long): LiveData<List<JobPost>>
 }
 @Dao
 interface RequirementDao{

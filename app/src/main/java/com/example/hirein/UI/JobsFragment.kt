@@ -5,13 +5,14 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 
 import com.example.hirein.R
 import com.example.hirein.data.*
 import com.example.hirein.data.db.JobPortalDatabase
 import com.example.hirein.data.db.JobPostRepository
-import com.example.hirein.data.entity.JobPostAdapter
+
 import com.example.hirein.data.model.JobPostData
 import com.example.hirein.databinding.FragmentJobsBinding
 
@@ -20,7 +21,6 @@ class JobsFragment: Fragment() {
     private val binding get() =_binding!!
     private lateinit var application :JobPortalDatabase
     private lateinit var  viewModel: JobPostsViewModel
-    private lateinit var userIdViewModel: UserIdViewModel
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var localJobsFeed: List<JobPostData>
     private lateinit var adapter: JobPostAdapter
@@ -34,12 +34,12 @@ class JobsFragment: Fragment() {
         val view = binding.root
       // checking the received arguments
        sharedPreferences = requireActivity().getSharedPreferences(CustomSharedPreferences.NAME, Context.MODE_PRIVATE)
-        userIdViewModel = ViewModelProvider(requireActivity())[UserIdViewModel::class.java]
+        //userIdViewModel = ViewModelProvider(requireActivity())[UserIdViewModel::class.java]
         println("viewModel intialized")
         application = JobPortalDatabase.getInstance(requireContext())
         val repository = JobPostRepository(application.jobPostDao(),application.tagsDao(),application.userDao(), application.companyDao(), application.skillsDao(),application.requirementDao(), application.appliedJobsDao(),application.followersDao())
         val userId =  sharedPreferences.getLong(CustomSharedPreferences.LOGGED_IN_USER_ID, -1)
-        println("UserId $userId")
+        //println("UserId $userId")
         if(userId > 0) {
             viewModel = ViewModelProvider(
                 requireActivity(),
@@ -47,44 +47,46 @@ class JobsFragment: Fragment() {
             )[JobPostsViewModel::class.java]
             // println("I am create Method call in Home Fragment")
             //hideUpButton()
-            viewModel.initializeJobsFeed {
-                localJobsFeed = viewModel.jobsFeed
-              requireActivity().runOnUiThread{
-                  adapter = JobPostAdapter(this@JobsFragment, viewModel.jobsFeed)
-                  binding.jobPosts.adapter = adapter
-
-              }
-
+            if(!viewModel.jobsFeed.isInitialized)
+                viewModel.initializeJobsFeed()
+            viewModel.jobsFeed.observe(viewLifecycleOwner) {
+                adapter.submitList(it)
             }
+            adapter = JobPostAdapter(this@JobsFragment)
+            binding.jobPosts.adapter = adapter
+
             //sharedViewModel = ViewModelProvider(requireActivity(),SharedJobPostViewModelFactory(repository,userId)).get(SharedJobPostData::class.java)
 
         }
-
-
         //binding.topAppBar.inflateMenu(R.menu.search_menu)
         return view
     }
     override fun onDestroy() {
         _binding = null
-
         super.onDestroy()
     }
 
     override fun onPause() {
         super.onPause()
-        this.paused = true
+
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        println("I am inside opions created")
+       // println("I am inside opions created")
         inflater.inflate(R.menu.search_menu,menu)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        this.paused =true
     }
     override fun onResume() {
         super.onResume()
        requireActivity().title = "HireIn"
-       if(paused && viewModel.jobsFeed.size != localJobsFeed.size){
+
+     /*  if(paused && viewModel.jobsFeed.size != localJobsFeed.size){
            println("INNNNN")
           adapter.updateData(viewModel.jobsFeed)
-       }
+       }*/
     }
 //    private fun hideUpButton(){
 //        (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
