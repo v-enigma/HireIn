@@ -1,32 +1,24 @@
-package com.example.hirein.UI
+package com.example.hirein.ui
 
 import android.os.Bundle
-import android.view.Menu
 import android.view.View
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.example.hirein.R
-import com.example.hirein.data.UserIdViewModel
+import com.example.hirein.data.viewModel.UserIdViewModel
 import com.example.hirein.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
      lateinit var binding : ActivityMainBinding
-     private lateinit var userIdViewModel :UserIdViewModel
+     private lateinit var userIdViewModel : UserIdViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         var userId = 1L

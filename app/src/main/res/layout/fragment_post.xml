@@ -5,7 +5,9 @@
     <data>
 
     </data>
-
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -80,13 +82,12 @@
             android:id="@+id/salaryType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:padding="5dp"
             android:paddingRight="15dp"
-            android:text="Job Type"
+            android:text="Salary "
             app:layout_constraintBottom_toBottomOf="@+id/salaryOptions"
             app:layout_constraintStart_toStartOf="@+id/MaxExpHolder"
-            app:layout_constraintTop_toBottomOf="@id/MaxExpHolder" />
+            app:layout_constraintTop_toBottomOf="@+id/MaxExpHolder" />
 
         <RadioGroup
             android:id="@+id/salaryOptions"
@@ -114,19 +115,122 @@
                 android:padding="5dp"
                 android:text="Range" />
 
-            <com.google.android.material.textfield.TextInputLayout
+        </RadioGroup>
+        <EditText
+            android:id="@+id/minSalary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Min Salary"
+            android:visibility="gone"
+            android:padding="5dp"
+            app:layout_constraintTop_toBottomOf="@+id/salaryOptions"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/maxSalary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Max Salary"
+            android:visibility="gone"
+
+            app:layout_constraintTop_toBottomOf="@id/minSalary"
+            app:layout_constraintStart_toStartOf="parent"
+            >
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                >
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/WorkLocationType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
 
-            </com.google.android.material.textfield.TextInputLayout>
+            android:text="Work Location Type "
+            app:layout_constraintBottom_toBottomOf="@+id/SalaryOptions"
+            app:layout_constraintStart_toStartOf="@+id/salaryType"
+            app:layout_constraintTop_toBottomOf="@id/maxSalary" />
 
+        <RadioGroup
+            android:id="@+id/SalaryOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/WorkLocationType"
+            app:layout_constraintTop_toBottomOf="@+id/maxSalary">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="5dp"
+                android:text="WFH" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="5dp"
+                android:text="WFO" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hybrid"
+                />
 
         </RadioGroup>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/locationHolder"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/SalaryOptions"
+            android:layout_width="match_parent">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/RequirementHolder"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/locationHolder"
+            app:layout_constraintStart_toStartOf="parent"
+            android:hint="Requirements"
+            app:helperText="Please enter each requirement in separate Line"
+            android:layout_height="wrap_content">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/jobRequirements"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            />
+     </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/skills"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Skills"
+            app:layout_constraintTop_toBottomOf="@+id/RequirementHolder"
+            app:helperText="Please enter the skills with comma seperated">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Submit"
+            app:layout_constraintTop_toBottomOf="@+id/skills"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+   </ScrollView>
 </layout>

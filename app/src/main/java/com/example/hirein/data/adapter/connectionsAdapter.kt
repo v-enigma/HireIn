@@ -1,15 +1,14 @@
 package com.example.hirein.data.entity
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hirein.UI.ConnectionsFragmentDirections
-import com.example.hirein.data.ConnectionInformation
+import com.example.hirein.ui.ConnectionsFragmentDirections
+import com.example.hirein.data.model.ConnectionInformation
 import com.example.hirein.data.ConnectionsDiffItemCallback
 import com.example.hirein.databinding.ConnectionBinding
 

@@ -1,4 +1,4 @@
-package com.example.hirein.data
+package com.example.hirein.data.model
 
 import androidx.lifecycle.ViewModel
 

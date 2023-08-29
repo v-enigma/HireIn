@@ -1,4 +1,4 @@
-package com.example.hirein.UI
+package com.example.hirein.ui
 
 import android.content.Context
 import android.content.Intent
@@ -6,17 +6,13 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.Display
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import com.example.hirein.R
 import com.example.hirein.data.db.JobPortalDatabase
-import com.example.hirein.data.db.entity.User
 import com.example.hirein.data.db.populateDB
 import com.example.hirein.databinding.ActivityLoginBinding
 import kotlinx.coroutines.Dispatchers

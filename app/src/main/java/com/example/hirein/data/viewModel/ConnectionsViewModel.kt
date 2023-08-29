@@ -1,10 +1,11 @@
-package com.example.hirein.data
+package com.example.hirein.data.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.hirein.data.db.ConnectionRepository
+import com.example.hirein.data.model.ConnectionInformation
 import com.example.hirein.data.model.SearchResults
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

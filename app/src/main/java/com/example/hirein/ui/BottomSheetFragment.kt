@@ -1,4 +1,4 @@
-package com.example.hirein.UI
+package com.example.hirein.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -9,10 +9,9 @@ import android.widget.LinearLayout
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.example.hirein.R
 import com.example.hirein.data.ConnectionViewModelFactory
-import com.example.hirein.data.ConnectionsViewModel
+import com.example.hirein.data.viewModel.ConnectionsViewModel
 import com.example.hirein.data.db.ConnectionRepository
 import com.example.hirein.data.db.JobPortalDatabase
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -31,7 +30,8 @@ class BottomSheetFragment: BottomSheetDialogFragment() {
         val repository = ConnectionRepository(database.professionalExperienceDao(), database.followersDao(),database.userDao())
         val sharedPreferences = requireActivity().getSharedPreferences(CustomSharedPreferences.NAME, Context.MODE_PRIVATE)
         val userId =  sharedPreferences.getLong(CustomSharedPreferences.LOGGED_IN_USER_ID, -1)
-        viewModel = ViewModelProvider(requireActivity(),ConnectionViewModelFactory(repository, userId)).get(ConnectionsViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity(),ConnectionViewModelFactory(repository, userId)).get(
+            ConnectionsViewModel::class.java)
         index = args?.getInt("Index")?: -1
         println("$index i accessed the Index")
 

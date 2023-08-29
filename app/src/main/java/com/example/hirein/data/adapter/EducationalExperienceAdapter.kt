@@ -1,13 +1,16 @@
-package com.example.hirein.data
+package com.example.hirein.data.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hirein.data.EducationDiffItemCallback
 import com.example.hirein.data.model.EducationData
 import com.example.hirein.databinding.EducationQualificationBinding
 
-class EducationalExperienceAdapter:ListAdapter<EducationData, EducationalExperienceAdapter.EducationalExperienceViewHolder>(EducationDiffItemCallback()) {
+class EducationalExperienceAdapter:ListAdapter<EducationData, EducationalExperienceAdapter.EducationalExperienceViewHolder>(
+    EducationDiffItemCallback()
+) {
     class EducationalExperienceViewHolder(val binding:EducationQualificationBinding):RecyclerView.ViewHolder(binding.root){
         companion object {
             fun inflateFrom(parent: ViewGroup): EducationalExperienceViewHolder {

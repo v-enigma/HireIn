@@ -1,6 +1,5 @@
-package com.example.hirein.UI
+package com.example.hirein.ui
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +8,6 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hirein.R
-import com.example.hirein.databinding.FragmentPostBinding
 import com.example.hirein.databinding.FragmentProfileBinding
 
 class ProfileFragment: Fragment() {

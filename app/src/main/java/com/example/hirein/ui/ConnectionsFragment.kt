@@ -1,13 +1,11 @@
-package com.example.hirein.UI
+package com.example.hirein.ui
 
 import android.content.Context
-import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
@@ -17,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.hirein.R
 import com.example.hirein.data.ConnectionViewModelFactory
-import com.example.hirein.data.ConnectionsViewModel
+import com.example.hirein.data.viewModel.ConnectionsViewModel
 import com.example.hirein.data.db.ConnectionRepository
 import com.example.hirein.data.db.JobPortalDatabase
 import com.example.hirein.data.entity.ConnectionsAdapter
@@ -43,7 +41,8 @@ class ConnectionsFragment:Fragment() {
         val sharedPreferences = requireActivity().getSharedPreferences(CustomSharedPreferences.NAME, Context.MODE_PRIVATE)
         val userId =  sharedPreferences.getLong(CustomSharedPreferences.LOGGED_IN_USER_ID, -1)
 
-        viewModel = ViewModelProvider(requireActivity(),ConnectionViewModelFactory(repository, userId)).get(ConnectionsViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity(),ConnectionViewModelFactory(repository, userId)).get(
+            ConnectionsViewModel::class.java)
         if(!viewModel.followers.isInitialized)
             viewModel.initializeFollowers()
         val adapter = ConnectionsAdapter(this) { index ->

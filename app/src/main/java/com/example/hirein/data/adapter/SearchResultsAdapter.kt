@@ -1,9 +1,10 @@
-package com.example.hirein.data
+package com.example.hirein.data.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hirein.data.SearchResultsDiffItemCallBack
 import com.example.hirein.data.model.SearchResults
 import com.example.hirein.databinding.SearchLineItemBinding
 

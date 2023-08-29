@@ -13,7 +13,7 @@
 
         android:theme="@style/Theme.HireIn">
         <activity
-            android:name=".UI.LoginActivity"
+            android:name=".ui.LoginActivity"
             android:configChanges="orientation|keyboardHidden"
             android:exported="true">
             <intent-filter>
@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UI.MainActivity">
+            android:name=".ui.MainActivity">
         </activity>
 
 

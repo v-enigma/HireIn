@@ -1,4 +1,4 @@
-package com.example.hirein.data
+package com.example.hirein.data.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,12 +6,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hirein.UI.JobsFragmentDirections
+import com.example.hirein.ui.JobsFragmentDirections
 import com.example.hirein.data.JobFeedDiffItemCallBack
 import com.example.hirein.data.model.JobPostData
 import com.example.hirein.databinding.PostViewBinding
 
-class JobPostAdapter(val fragment: Fragment): ListAdapter<JobPostData,JobPostAdapter.JobPostViewHolder>(
+class JobPostAdapter(val fragment: Fragment): ListAdapter<JobPostData, JobPostAdapter.JobPostViewHolder>(
     JobFeedDiffItemCallBack()
 ) {
 

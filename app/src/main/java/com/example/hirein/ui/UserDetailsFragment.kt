@@ -1,12 +1,12 @@
-package com.example.hirein.UI
+package com.example.hirein.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.hirein.data.EducationalExperienceAdapter
-import com.example.hirein.data.ProfessionalExperienceAdapter
+import com.example.hirein.data.adapter.EducationalExperienceAdapter
+import com.example.hirein.data.adapter.ProfessionalExperienceAdapter
 import com.example.hirein.databinding.FragmentUserDetailsBinding
 
 class UserDetailsFragment: Fragment() {

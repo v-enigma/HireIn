@@ -1,8 +1,8 @@
 package com.example.hirein.data.db
 
 import androidx.lifecycle.asFlow
-import com.example.hirein.Factories.followerFactory
-import com.example.hirein.data.ConnectionInformation
+import com.example.hirein.factories.followerFactory
+import com.example.hirein.data.model.ConnectionInformation
 import com.example.hirein.data.model.SearchResults
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first

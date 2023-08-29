@@ -1,9 +1,6 @@
 package com.example.hirein.data.model
 
-import android.os.Parcelable
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.hirein.data.ConnectionInformation
 import com.example.hirein.data.db.entity.Company
 
 data class JobPostData(

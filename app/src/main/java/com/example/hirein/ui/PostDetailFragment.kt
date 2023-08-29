@@ -1,4 +1,4 @@
-package com.example.hirein.UI
+package com.example.hirein.ui
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -11,9 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.hirein.R
 import com.example.hirein.data.JobPostViewModelFactory
-import com.example.hirein.data.JobPostsViewModel
-import com.example.hirein.data.SharedJobPostData
-import com.example.hirein.data.SharedJobPostViewModelFactory
+import com.example.hirein.data.viewModel.JobPostsViewModel
 import com.example.hirein.data.db.JobPortalDatabase
 import com.example.hirein.data.db.JobPostRepository
 import com.example.hirein.databinding.PostDetailBinding

@@ -1,10 +1,7 @@
 package com.example.hirein.data
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.hirein.data.model.EducationData
-import com.example.hirein.data.model.JobPostData
-import com.example.hirein.data.model.ProfessionalExperienceData
-import com.example.hirein.data.model.SearchResults
+import com.example.hirein.data.model.*
 
 class ConnectionsDiffItemCallback: DiffUtil.ItemCallback<ConnectionInformation>() {
     override fun areItemsTheSame(

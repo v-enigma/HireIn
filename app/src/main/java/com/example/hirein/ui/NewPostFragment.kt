@@ -1,4 +1,4 @@
-package com.example.hirein.UI
+package com.example.hirein.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater

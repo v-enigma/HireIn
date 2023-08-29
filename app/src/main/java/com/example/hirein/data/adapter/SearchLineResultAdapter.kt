@@ -1,4 +1,4 @@
-package com.example.hirein.data
+package com.example.hirein.data.adapter
 
 
 import android.view.LayoutInflater
@@ -7,6 +7,8 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hirein.data.model.ConnectionInformation
+import com.example.hirein.data.SearchLineResultDiffItemCallBack
 import com.example.hirein.databinding.ConnectionBinding
 
 class SearchLineResultAdapter(val type:String): ListAdapter<ConnectionInformation, SearchLineResultAdapter.SearchLineResultViewHolder>(
@@ -15,7 +17,7 @@ class SearchLineResultAdapter(val type:String): ListAdapter<ConnectionInformatio
     private lateinit var  binding : ConnectionBinding
     class SearchLineResultViewHolder(val binding:ConnectionBinding, val type:String): RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item :ConnectionInformation){
+        fun bind(item : ConnectionInformation){
             binding.connection = item
             binding.options.visibility = GONE
             if(type != "Follower"){

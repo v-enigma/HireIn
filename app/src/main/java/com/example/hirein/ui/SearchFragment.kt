@@ -1,4 +1,4 @@
-package com.example.hirein.UI
+package com.example.hirein.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -10,11 +10,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.hirein.data.ConnectionViewModelFactory
-import com.example.hirein.data.ConnectionsViewModel
-import com.example.hirein.data.SearchResultsAdapter
+import com.example.hirein.data.viewModel.ConnectionsViewModel
+import com.example.hirein.data.adapter.SearchResultsAdapter
 import com.example.hirein.data.db.ConnectionRepository
 import com.example.hirein.data.db.JobPortalDatabase
-import com.example.hirein.data.model.SearchResults
 import com.example.hirein.databinding.FragmentSearchBinding
 
 class SearchFragment:Fragment() {

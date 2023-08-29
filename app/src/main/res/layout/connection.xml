@@ -4,7 +4,7 @@
     <data>
         <variable
             name="connection"
-            type="com.example.hirein.data.ConnectionInformation" />
+            type="com.example.hirein.data.model.ConnectionInformation" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
 

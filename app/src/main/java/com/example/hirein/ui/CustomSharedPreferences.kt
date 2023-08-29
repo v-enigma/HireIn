@@ -1,4 +1,4 @@
-package com.example.hirein.UI
+package com.example.hirein.ui
 
 object CustomSharedPreferences {
     const val NAME ="credentials"

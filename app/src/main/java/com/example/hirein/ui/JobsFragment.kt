@@ -1,19 +1,20 @@
-package com.example.hirein.UI
+package com.example.hirein.ui
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 
 import com.example.hirein.R
 import com.example.hirein.data.*
+import com.example.hirein.data.adapter.JobPostAdapter
 import com.example.hirein.data.db.JobPortalDatabase
 import com.example.hirein.data.db.JobPostRepository
 
 import com.example.hirein.data.model.JobPostData
+import com.example.hirein.data.viewModel.JobPostsViewModel
 import com.example.hirein.databinding.FragmentJobsBinding
 
 class JobsFragment: Fragment() {

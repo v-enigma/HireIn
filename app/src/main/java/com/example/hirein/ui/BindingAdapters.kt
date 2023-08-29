@@ -1,13 +1,9 @@
-package com.example.hirein.UI
+package com.example.hirein.ui
 
-import android.view.View
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.example.hirein.data.db.entity.Company
-import com.example.hirein.data.model.JobPostData
-import kotlin.math.max
-import kotlin.math.min
-import kotlin.properties.Delegates
+
 @BindingAdapter("minSalary", "maxSalary")
 fun TextView.setSalaryRange(minSalary:Int, maxSalary:Int){
     var salaryString ="Rs "

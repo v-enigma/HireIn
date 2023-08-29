@@ -1,4 +1,4 @@
-package com.example.hirein.Factories
+package com.example.hirein.factories
 
 import com.example.hirein.data.db.entity.Follower
 
